@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Video\VideoController;
 use App\Http\Controllers\Frontend\Home\HomeController;
+use App\Http\Controllers\Frontend\Setting\SettingController;
 use App\Http\Controllers\Frontend\Video\VideoController as VideoVideoController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +28,12 @@ Route::prefix('/blog')->name('blog.')->group(function () {
 Route::prefix('/video')->name('video.')->group(function () {
     Route::get('/all', [VideoVideoController::class, 'videoFetch'])->name('fetch');
 });
+
+
+
+
+
+
+
 
 require __DIR__.'/auth.php';

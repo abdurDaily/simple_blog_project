@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
 use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 
@@ -22,7 +23,14 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('*', function ($view) {
             $notificationCount = User::where('status', 0)->count();
-            $view->with('notificationData', $notificationCount);
+            $fetchSocialData =  Setting::select('id','social_name','social_link')
+            ->where('social_link', '!=', null )
+            ->get();
+            $view->with([
+                'notificationData' => $notificationCount,
+                'fetchSocialData' => $fetchSocialData
+            ]);
         });
     }
 }
+

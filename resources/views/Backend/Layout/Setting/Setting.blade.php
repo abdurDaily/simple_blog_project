@@ -17,7 +17,10 @@
                                     @csrf
 
                                     <label for="social">Add new social media</label>
-                                    <input name="social_name" id="social" type="text" class="form-control py-3 mb-3" placeholder="name social media" name="" id="">
+                                    <input name="social_name" id="social" type="text" class="form-control py-3 mb-3" placeholder="name social media" >
+                                    @error('social_name')
+                                      <strong class="text-danger">{{ $message }}</strong>
+                                    @enderror
                                     <button type="submit" class="btn btn-primary w-25">Add</button>
                                 </form>
                             </div>
@@ -37,7 +40,7 @@
                         </div>
 
                         {{-- 1ST FILED --}}
-                        <form action="">
+                        <form action="{{ route('setting.store.link') }}" method="post">
                             @csrf
                             <div class="input-style-1">
 
@@ -46,12 +49,16 @@
                                     <div class="select-style-1">
                                         <label>Category</label>
                                         <div class="select-position">
-                                          <select>
-                                            <option value="">Select category</option>
-                                            <option value="">Category one</option>
-                                            <option value="">Category two</option>
-                                            <option value="">Category three</option>
+                                          <select name="select_option">
+                                            <option selected disabled>Select category</option>
+                                            @foreach ($settingOption->reverse() as $option)
+                                             <option  value="{{ $option->id }}">{{ $option->social_name }}</option>
+                                            @endforeach
                                           </select>
+
+                                          @error('select_option')
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                          @enderror
                                         </div>
                                       </div>
                                 </div>
@@ -60,7 +67,10 @@
 
                                 <!-- end input -->
                                 <div class="input-style-3">
-                                    <input type="text" placeholder="URL link">
+                                    <input name="social_link" type="text" placeholder="URL link">
+                                        @error('social_link')
+                                          <strong class="text-danger">{{ $message }}</strong>
+                                        @enderror
                                     <span class="icon"><i class="lni lni-user"></i></span>
                                 </div>
                                 <!-- end input -->

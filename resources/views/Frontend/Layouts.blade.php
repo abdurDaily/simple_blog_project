@@ -747,13 +747,18 @@
                 >Follow me!
               </h3>
               <ul class="icons epcl-social-fill-color">
+                
+                @forelse ($fetchSocialData as $social)
+                  
+
+                
                 <li>
                   <a
-                    href="#"
+                    href="{{ $social->social_link }}"
                     class="twitter"
                     target="_blank"
                     rel="nofollow noopener"
-                    ><span class="name">Follow me on <b>Twitter</b> </span
+                    ><span class="name">Follow me on <b>{{ $social->social_name }}</b> </span
                     ><span class="icon twitter"
                       ><svg class="icon small">
                         <use
@@ -761,34 +766,11 @@
                         ></use></svg></span
                   ></a>
                 </li>
-                <li>
-                  <a
-                    href="#"
-                    class="facebook"
-                    target="_blank"
-                    rel="nofollow noopener"
-                    ><span class="name">Follow me on <b>Facebook</b> </span
-                    ><span class="icon facebook"
-                      ><svg class="icon small">
-                        <use
-                          xlink:href="https://themes.estudiopatagon.com/wordpress/zento/wp-content/themes/zento/assets/images/svg-icons.svg#facebook-icon"
-                        ></use></svg></span
-                  ></a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="instagram"
-                    target="_blank"
-                    rel="nofollow noopener"
-                    ><span class="name">Follow me on <b>Instagram</b> </span
-                    ><span class="icon instagram"
-                      ><svg class="icon small">
-                        <use
-                          xlink:href="https://themes.estudiopatagon.com/wordpress/zento/wp-content/themes/zento/assets/images/svg-icons.svg#instagram-icon"
-                        ></use></svg></span
-                  ></a>
-                </li>
+                
+
+                @empty
+                  <li> no social media data found! </li>
+                @endforelse
   
               </ul>
               <div class="clear"></div>

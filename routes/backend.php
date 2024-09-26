@@ -81,7 +81,7 @@ Route::middleware('admin')->
 prefix('admin/setting/')->name('setting.')->group(function () {
     Route::get('setting', [SettingController::class, 'setting'])->name('index');
     Route::post('setting', [SettingController::class, 'storeSocial'])->name('store');
-    
+    Route::post('setting-link', [SettingController::class, 'storeSocialLink'])->name('store.link');
 });
 
 
