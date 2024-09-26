@@ -9,7 +9,7 @@
                     
   
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="card p-5">
@@ -33,9 +33,15 @@
 
                             <h6 class="">Social Media Fields</h6>
                             <!-- Button trigger modal -->
+                           <div class="social_btn">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 <i class="fa-regular fa-square-plus"></i>
                             </button>
+
+                            <a href="{{ route('setting.edit') }}"  class="btn btn-warning" >
+                                <i class="fa-regular fa-square-plus"></i>
+                            </a>
+                           </div>
 
                         </div>
 

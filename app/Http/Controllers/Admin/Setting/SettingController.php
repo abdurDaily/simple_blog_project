@@ -10,8 +10,16 @@ class SettingController extends Controller
 {
     //**SETTING INDEX */
     public function setting() {
-        $settingOption = Setting::select('id', 'social_name')->get();
+        $settingOption = Setting::select('id', 'social_name','social_link')->get();
         return view('Backend.Layout.Setting.Setting', compact('settingOption'));
+    }
+
+
+    //** EDIT */
+    public function settingEdit() {
+        $allSocialMedia = Setting::get();
+        dd($allSocialMedia);
+        return view('Backend.Layout.Setting.Edit');
     }
 
 
@@ -40,4 +48,10 @@ class SettingController extends Controller
         $findData->save();
         return back();
     }
+
+//     /** EDIT SOCIAL MEDIA NAME*/
+//     public function settingEdit(){
+
+//     }
+
 }
