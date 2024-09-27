@@ -27,6 +27,9 @@ class SettingController extends Controller
 
     //** UPDATE */
     public function updateSocialMedia(Request $request) {
+        // $request->validate([
+        //     'social_name' => 'required|url', 
+        //  ]);
         $id = $request->input('id');
         $editSocialMedia = Setting::find($id);
         $editSocialMedia->social_name = $request->input('social_name');
@@ -44,13 +47,6 @@ class SettingController extends Controller
     }
 
 
-    //** EDIT SOCIAL MEDIA */
-    // public function editSocialMedia($id) {
-    //   $editSocialMedia = Setting::find($id);
-    //   dd($editSocialMedia);
-    //   return view('Backend.Layout.Setting.Edit', compact('editSocialMedia'));
-    // }
-
 
     //**STORE  */
     public function storeSocial(Request $request) {
@@ -62,6 +58,7 @@ class SettingController extends Controller
         $settingData->social_name = $request->social_name;
         $settingData->save();
         return back();
+
     }
 
     //**STORE SOCIAL LINK */
@@ -75,6 +72,7 @@ class SettingController extends Controller
         $findData = Setting::find($request->select_option);
         $findData->social_link = $request->social_link;
         $findData->save();
+        toast('data added!', 'success');
         return back();
     }
 

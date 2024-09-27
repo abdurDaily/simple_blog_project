@@ -20,6 +20,11 @@
                                 <div class="col-lg-5">
                                     <label for="social_link">Add new social media link</label>
                                     <input name="social_link" id="social_link" type="text" class="form-control py-3 mb-3" placeholder="social media link" >
+                                    @error('social_link')
+                                    <div class="alert alert-danger">
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="col-lg-2 d-flex align-items-center">
                                     <button type="submit" class="btn btn-outline-primary w-100 py-3 mt-1">Add</button>
@@ -139,6 +144,10 @@ document.querySelectorAll('.edit-btn').forEach(btn => {
     });
 });
 
+
+document.querySelector('.btn-cross').addEventListener('click',()=>{
+    document.querySelector('.content').style.display = 'none';
+})
 // Add an event listener to the form submit event
 document.getElementById('update-form').addEventListener('submit', function(e) {
     e.preventDefault();

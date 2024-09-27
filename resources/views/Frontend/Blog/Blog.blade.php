@@ -2,7 +2,7 @@
 @section('OgTags')
 <meta property="og:title" content="{{ $blog->blog_title }}" />
 <meta property="og:description" content="{{ Str::limit($blog->blog_details, 155) }}" />
-<meta property="og:image" content="{{ asset($blog->blog_image) }}" />
+<meta property="og:image" content="{{ $blog->blog_image }}" />
 {{-- <meta property="og:url" content="{{ url($post->slug) }}" /> --}}
 @endsection
 @section('frontend_contains')
