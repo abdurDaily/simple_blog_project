@@ -16,17 +16,46 @@ class SettingController extends Controller
 
 
     //** EDIT */
-    public function settingEdit() {
-        $allSocialMedia = Setting::get();
-        dd($allSocialMedia);
-        return view('Backend.Layout.Setting.Edit');
+    public function settingEdit($id = null) {
+        $editSocialMedia = Setting::find($id);
+        if (request()->ajax()) {
+            return response()->json($editSocialMedia);
+        }
+        $allSocialMedia = Setting::latest()->get();
+        return view('Backend.Layout.Setting.Edit', compact('allSocialMedia', 'editSocialMedia'));
     }
+
+    //** UPDATE */
+    public function updateSocialMedia(Request $request) {
+        $id = $request->input('id');
+        $editSocialMedia = Setting::find($id);
+        $editSocialMedia->social_name = $request->input('social_name');
+        $editSocialMedia->social_link = $request->input('social_link');
+        $editSocialMedia->save();
+        // Return a success response
+    }
+
+
+    //** DELETE */
+    public function settingDelete($id) {
+       Setting::find($id)->delete();
+       toast('deleted Data!', 'error');
+       return back();
+    }
+
+
+    //** EDIT SOCIAL MEDIA */
+    // public function editSocialMedia($id) {
+    //   $editSocialMedia = Setting::find($id);
+    //   dd($editSocialMedia);
+    //   return view('Backend.Layout.Setting.Edit', compact('editSocialMedia'));
+    // }
 
 
     //**STORE  */
     public function storeSocial(Request $request) {
         $request->validate([
-           'social_name' => 'required', 
+           'social_name' => 'required|unique:settings,social_name', 
         ]);
 
         $settingData = new Setting();

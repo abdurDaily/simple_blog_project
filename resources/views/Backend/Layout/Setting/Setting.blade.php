@@ -9,7 +9,8 @@
                     
   
                         <!-- Modal -->
-                        <div class="modal fade" id="" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                             <div class="modal-content">
                             <div class="card p-5">
@@ -18,9 +19,7 @@
 
                                     <label for="social">Add new social media</label>
                                     <input name="social_name" id="social" type="text" class="form-control py-3 mb-3" placeholder="name social media" >
-                                    @error('social_name')
-                                      <strong class="text-danger">{{ $message }}</strong>
-                                    @enderror
+                                    
                                     <button type="submit" class="btn btn-primary w-25">Add</button>
                                 </form>
                             </div>
@@ -31,6 +30,7 @@
                          {{-- ADD --}}
                         <div class="d-flex mb-25 justify-content-between align-items-center">
 
+                            
                             <h6 class="">Social Media Fields</h6>
                             <!-- Button trigger modal -->
                            <div class="social_btn">
@@ -44,6 +44,12 @@
                            </div>
 
                         </div>
+
+                            @error('social_name')
+                            <div class="alert alert-danger">
+                                <strong class="text-danger">{{ $message }}</strong>
+                            </div>
+                            @enderror
 
                         {{-- 1ST FILED --}}
                         <form action="{{ route('setting.store.link') }}" method="post">
@@ -121,10 +127,6 @@
                 </div>
             </div>
         </div>
-
-
-
-        
 
 
 
