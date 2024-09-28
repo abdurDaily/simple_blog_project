@@ -86,6 +86,7 @@ prefix('admin/setting/')->name('setting.')->group(function () {
     Route::put('/setting/update/social/media', [SettingController::class, 'updateSocialMedia'])->name('update.social.media');
     Route::post('setting', [SettingController::class, 'storeSocial'])->name('store');
     Route::post('setting-link', [SettingController::class, 'storeSocialLink'])->name('store.link');
+    Route::post('logo', [SettingController::class, 'logo'])->name('logo.store');
 });
 
 

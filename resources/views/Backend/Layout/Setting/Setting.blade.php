@@ -104,31 +104,29 @@
             {{-- 2ND FILED --}}
             <div class="col-lg-4">
                 <div class="card-style mb-30">
-                    <h6 class="mb-25">Input Fields</h6>
-                    <div class="input-style-1">
-                        <!-- end input -->
-                        <div class="input-style-3">
-                        <input type="text" placeholder="Full Name">
-                        <span class="icon"><i class="lni lni-user"></i></span>
-                        </div>
-                        <!-- end input -->
+                    <h6 class="mb-25">Logo Upload</h6>
+                    <div class="input-style-1 mb-3">
+                        <form action="{{ route('setting.logo.store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+
+                            <!-- end input -->
+                            <div class="input-style-3 mb-3">
+                                <input type="file" name="logo" accept=".png,.jpg,.jpeg,.webp">
+                                @error('logo')
+                                    <span class="text-danger">{{ $message }}</span> <br>
+                                @enderror
+                                <img style="width:150px; margin-top:10px;" src="{{ $logo->logo   }}" alt="logo">
+                            </div>
+
+                            <button class="main-btn w-100 primary-btn btn-hover  text-center" type="submit">
+                                Update
+                            </button>
+                            <!-- end input -->                        </form>
                     </div>
                 </div>
             </div>
             {{-- 3RD FILED --}}
-            <div class="col-lg-4">
-                <div class="card-style mb-30">
-                    <h6 class="mb-25">Input Fields</h6>
-                    <div class="input-style-1">
-                        <!-- end input -->
-                        <div class="input-style-3">
-                        <input type="text" placeholder="Full Name">
-                        <span class="icon"><i class="lni lni-user"></i></span>
-                        </div>
-                        <!-- end input -->
-                    </div>
-                </div>
-            </div>
+           
         </div>
 
         @push('js_contains')

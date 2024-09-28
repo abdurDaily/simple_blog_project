@@ -25,27 +25,12 @@
   </head>
   <body>
 
-    <div class="row g-0 auth-row">
-        <div class="col-lg-6">
-          <div class="auth-cover-wrapper bg-primary-100">
-            <div class="auth-cover">
-              <div class="title text-center">
-                <h1 class="text-primary mb-10">Welcome Back</h1>
-                <p class="text-medium">
-                  Sign in to your Existing account to continue
-                </p>
-              </div>
-              <div class="cover-image">
-                <img src="assets/images/auth/signin-image.svg" alt="">
-              </div>
-              <div class="shape-image">
-                <img src="assets/images/auth/shape.svg" alt="">
-              </div>
-            </div>
-          </div>
-        </div>
+
+    <section class="d-flex align-items-center" style="height: 100vh;">
+      <div class="container"> 
+
         <!-- end col -->
-        <div class="col-lg-6">
+        <div class="col-lg-6 mx-auto">
           <div class="signin-wrapper">
             <div class="form-wrapper">
               <h6 class="mb-15">Sign In Form</h6>
@@ -113,7 +98,9 @@
           </div>
         </div>
         <!-- end col -->
+
       </div>
+    </section>
 
 
 
