@@ -420,7 +420,7 @@
       <div class="logo">
         <a href="{{ route('home.index') }}"
           ><img
-            src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/uploads/2024/03/logo-zento-1.png"
+            src="{{ $logo->logo ? $logo->logo : ''  }}"
             alt="Zento"
             width="160"
         /></a>
@@ -641,7 +641,7 @@
               <div class="logo">
                 <a href="{{ route('home.index') }}"
                   ><img
-                    src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/uploads/2024/03/logo-zento-1.png"
+                    src="{{ $logo->logo ? $logo->logo : ''  }}"
                     alt="Zento"
                     width="160"
                 /></a>
@@ -824,7 +824,7 @@
                   <p>
                     <img
                       class="alignnone size-full wp-image-59"
-                      src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/uploads/2024/03/logo-zento-1.png"
+                      src="{{ $logo->logo ? $logo->logo : ''  }}"
                       alt="Zento Website Logo"
                       width="170"
                       height="44"

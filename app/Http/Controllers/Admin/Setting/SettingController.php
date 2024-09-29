@@ -91,10 +91,10 @@ public function logo(Request $request){
     }
 
     $request->validate([
-        'logo' => 'required|image|mimes:jpg,jpeg,png,svg|dimensions:max_width=150,max_height=30',
+        'logo' => 'required|image|mimes:jpg,jpeg,png,svg|dimensions:max_width=300,max_height=100',
     ],
     [
-        'logo.dimensions' => 'The logo must be 150x30 pixels',
+        'logo.dimensions' => 'The logo must be 300x50 pixels',
     ]);
 
     if($request->hasFile('logo')){
@@ -112,8 +112,5 @@ public function logo(Request $request){
         $logo->save();
         return back();
     }
-}
-
-
-    
+}  
 }

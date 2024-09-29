@@ -30,10 +30,10 @@
     <!-- ======== sidebar-nav start =========== -->
 
         <aside class="sidebar-nav-wrapper">
-            <div class="navbar-logo">
+            <div class="navbar-logo text-center">
               <a href="{{ route('dashboard.index') }}">
                 {{-- <h4>DigiViz</h4> --}}
-                <img src="{{ asset('assets/images/logo/logo.svg') }}" alt="logo" />
+                <img style="width: 150px;" src="{{ $logo->logo ? $logo->logo : ''  }}" alt="logo" />
               </a>
             </div>
             <nav class="sidebar-nav">

@@ -115,7 +115,7 @@
                                 @error('logo')
                                     <span class="text-danger">{{ $message }}</span> <br>
                                 @enderror
-                                <img style="width:150px; margin-top:10px;" src="{{ $logo->logo   }}" alt="logo">
+                                <img style="width:150px; margin-top:10px;" src="{{ $logo->logo ? $logo->logo : ''  }}" alt="logo">
                             </div>
 
                             <button class="main-btn w-100 primary-btn btn-hover  text-center" type="submit">
