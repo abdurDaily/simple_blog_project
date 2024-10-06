@@ -27,12 +27,13 @@
                      <div class="details text px-lg-5">
                        {!! $blog->blog_details !!}
                       </div>
-                      <div class="details text px-lg-5">
+                      <div class="details text px-lg-5" style="position: relative;">
                         <pre class="codemirror" style="white-space: pre-wrap;">
-                          <code class="language-php" id="code">
-                              {{ preg_replace('/^\s+$/m', '', trim($blog->code)) }}
-                          </code>
-                      </pre>
+                            <code class="language-php" id="code">
+                                {{ preg_replace('/^\s+$/m', '', trim($blog->code)) }}
+                            </code>
+                        </pre>
+                        <button class="copy-button" data-clipboard-target="#code" style="position: absolute; top: 0; right: 5%; background:#6A4EE9; color:#fff; padding:5px;">Copy Code</button>
                     </div>
                 </div>
             </div>
@@ -108,20 +109,18 @@ codeSnippet.addEventListener('input', function() {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
 <script>
-  const code = document.getElementById('code');
-const formattedCode = prettier.format(code.textContent, {
-  parser: 'php',
-  printWidth: 80,
-  tabWidth: 4,
-  useTabs: false,
-  semi: true,
-  singleQuote: true,
-  trailingComma: 'all',
-  bracketSpacing: true,
-  arrowParens: 'always',
-  endOfLine: 'auto',
-});
-code.textContent = formattedCode;
+
+
+    const copyButton = document.querySelector('.copy-button');
+    const code = document.querySelector('#code');
+
+    copyButton.addEventListener('click', () => {
+        navigator.clipboard.writeText(code.textContent).then(() => {
+            alert('Code copied to clipboard!');
+        });
+    });
+
+
 </script>
 @endpush
 
@@ -132,6 +131,7 @@ code.textContent = formattedCode;
     max-height: 500px; /* adjust the height to your needs */
     overflow-y: auto;
 }
+
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
 @endpush
