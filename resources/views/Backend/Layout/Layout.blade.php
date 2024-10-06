@@ -33,7 +33,7 @@
             <div class="navbar-logo text-center">
               <a href="{{ route('dashboard.index') }}">
                 {{-- <h4>DigiViz</h4> --}}
-                <img style="width: 150px;" src="{{ $logo->logo ? $logo->logo : ''  }}" alt="logo" />
+                <img style="width: 150px;" src="{{ $logo ? $logo->logo : 'https://citictgms.com/logo.png'  }}" alt="logo" />
               </a>
             </div>
             <nav class="sidebar-nav">
@@ -113,6 +113,18 @@
 
                 <li class="nav-item">
                   <a
+                    href="{{ route('message.index')  }}">
+                    <span class="icon">
+                      <i class="fa-regular fa-message"></i>
+                    </span>
+                    <span class="text">Messages </span>
+                  </a>
+                </li>
+
+
+
+                <li class="nav-item">
+                  <a
                     href="{{ route('setting.index') }}">
                     <span class="icon">
                       <i class="lni lni-cog"></i>
@@ -120,6 +132,9 @@
                     <span class="text">Setting </span>
                   </a>
                 </li>
+
+
+
                 <li class="nav-item">
                   <a
                     href="{{ route('home.index') }}">

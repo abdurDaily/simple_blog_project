@@ -10,7 +10,7 @@
         </div>
       </div>
       <!-- end col -->
-      <div class="col-md-6">
+      <div class="col-md-6 ">
         <div class="breadcrumb-wrapper">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -31,9 +31,9 @@
 
   <div class="card-style">
     @forelse ($userInfo as $key => $user)
-      <div class="single-notification">
+      <div class="single-notification ">
 
-        <div class="notification">
+        <div class="notification ">
           <div class="image warning-bg">
             <img src="https://api.dicebear.com/9.x/initials/svg?seed={{ $user->name }}" alt="">
           </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Approve\ApproveController;
 use App\Http\Controllers\Admin\Blog\BlogController;
 use App\Http\Controllers\Admin\Category\CategoryController;
 use App\Http\Controllers\Admin\Dashboard\DashboardController;
+use App\Http\Controllers\Admin\Message\MessageController;
 use App\Http\Controllers\Admin\Profile\ProfileController as ProfileProfileController;
 use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Admin\Video\VideoController;
@@ -87,6 +88,18 @@ prefix('admin/setting/')->name('setting.')->group(function () {
     Route::post('setting', [SettingController::class, 'storeSocial'])->name('store');
     Route::post('setting-link', [SettingController::class, 'storeSocialLink'])->name('store.link');
     Route::post('logo', [SettingController::class, 'logo'])->name('logo.store');
+});
+
+
+
+/**
+ * MESSAGE    
+ */
+Route::middleware('admin')->
+prefix('admin/message/')->name('message.')->group(function () {
+    Route::get('/index', [MessageController::class, 'messageIndex'])->name('index');
+    Route::post('/index', [MessageController::class, 'storeMessage'])->name('store.message');
+    Route::get('/delete/{id}', [MessageController::class, 'delete'])->name('delete');
 });
 
 

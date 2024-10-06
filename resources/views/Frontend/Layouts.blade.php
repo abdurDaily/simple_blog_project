@@ -420,7 +420,7 @@
       <div class="logo">
         <a href="{{ route('home.index') }}"
           ><img
-            src="{{ $logo->logo ? $logo->logo : ''  }}"
+            src="{{ $logo ? $logo->logo : 'https://citictgms.com/logo.png'  }}"
             alt="Zento"
             width="160"
         /></a>
@@ -641,7 +641,7 @@
               <div class="logo">
                 <a href="{{ route('home.index') }}"
                   ><img
-                    src="{{ $logo->logo ? $logo->logo : ''  }}"
+                    src="{{ $logo ? $logo->logo : 'https://citictgms.com/logo.png'  }}"
                     alt="Zento"
                     width="160"
                 /></a>
@@ -699,27 +699,21 @@
 
               <div class="form-group">
                 
-                <form action="{{ route('blog.search') }}" method="get">
-                  @csrf
+               <form class="subscribe-form" action="{{ route('message.store.message') }}" method="POST">
+               
+                @csrf
+                <label class="title small" for="email-epcl_subscribe_form-2">Let's connect</label>
+                <div class="form-group">
+                  <input type="email" id="email-epcl_subscribe_form-2" name="subscribe" class="inputbox large" required placeholder="Enter your email address">
+                  <button class="epcl-button submit absolute" type="submit">Subscribe <span class="loader"></span></button>
+                </div>
+                @if (Session::has('success'))
+                  <a id="flash-message-anchor"></a>
+                  <div class="alert alert-success">{{ Session::get('success') }} </div>
+                @endif
+              </form>
 
-                      <input
-                      type="text"
-                      name="blog_search"
-                      id="s"
-                      value=""
-                      class="search-field inputbox large"
-                      placeholder="Type to start your search"
-                      aria-label="Type to start your search"
-                      required
-                    />
-                    <button
-                      type="submit"
-                      class="epcl-button submit absolute"
-                      aria-label="Submit"
-                    >
-                      Search
-                    </button>
-                </form>
+
 
               </div>
           </div>
@@ -788,16 +782,7 @@
               </h3>
               <div class="menu-quick-links-container">
                 <ul id="menu-quick-links" class="menu">
-                  <li
-                    id="menu-item-1157"
-                    class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1157"
-                  >
-                    <a
-                      href="{{ route('home.index') }}"
-                      aria-current="page"
-                      >Home</a
-                    >
-                  </li>
+                  
                  
                   <li
                     id="menu-item-1160"
@@ -824,7 +809,7 @@
                   <p>
                     <img
                       class="alignnone size-full wp-image-59"
-                      src="{{ $logo->logo ? $logo->logo : ''  }}"
+                      src="{{ $logo ? $logo->logo : 'https://citictgms.com/logo.png'  }}"
                       alt="Zento Website Logo"
                       width="170"
                       height="44"
@@ -838,26 +823,39 @@
                 <br />
                 <form
                   class="subscribe-form"
-                  action="#"
+                  action="{{ route('message.store.message') }}"
                   method="POST"
-                  target="_blank"
                 >
+                @csrf
                   <label class="title small" for="email-epcl_subscribe_form-2"
                     >Let's connect</label
                   >
                   <div class="form-group">
-                    <input
-                      type="email"
-                      id="email-epcl_subscribe_form-2"
-                      name="MERGE0"
-                      class="inputbox large"
-                      required
-                      placeholder="Enter your email address"
-                    />
-                    <button class="epcl-button submit absolute" type="submit">
-                      Get Started<span class="loader"></span>
-                    </button>
+                   
+
+                
+                        <input
+                        type="email"
+                        id="email-epcl_subscribe_form-2"
+                        name="subscribe"
+                        class="inputbox large"
+                        required
+                        placeholder="Enter your email address"
+                      />
+                      
+                      <button class="epcl-button submit absolute" type="submit">
+                        Subscribe <span class="loader"></span>
+                      </button>
+
+                    </form>
+                    
+                    
                   </div>
+                  @if (Session::has('success'))
+                  <a id="flash-message-anchor"></a>
+                  <div class="alert alert-success">{{ Session::get('success') }}</div>
+                  @endif
+                  
                 </form>
                 <div class="clear"></div>
               </div>
@@ -876,41 +874,31 @@
               </h3>
               <div class="menu-quick-links-container">
                 <ul id="menu-quick-links-1" class="menu">
+                  
+                  
+                  
                   <li
                     class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1157"
                   >
                     <a
-                      href="https://themes.estudiopatagon.com/wordpress/zento/"
+                      href="{{ route('blog.all.list') }}"
                       aria-current="page"
-                      >Home</a
+                      >Blog's</a
                     >
                   </li>
+                  
                   <li
-                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1159"
+                    class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1157"
                   >
                     <a
-                      href="https://themes.estudiopatagon.com/wordpress/zento/features/"
-                      >Features</a
+                      href="{{ route('video.fetch') }}"
+                      aria-current="page"
+                      >Video's</a
                     >
                   </li>
-                  <li
-                    class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1158"
-                  >
-                    <a
-                      href="https://themes.estudiopatagon.com/wordpress/zento/contact/"
-                      >Contact</a
-                    >
-                  </li>
-                  <li
-                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1160"
-                  >
-                    <a href="#">Terms &#038; Conditions</a>
-                  </li>
-                  <li
-                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1161"
-                  >
-                    <a href="#">Privacy Policy</a>
-                  </li>
+
+
+                  
                 </ul>
               </div>
               <div class="clear"></div>
@@ -945,7 +933,10 @@
                     >Let's connect</label
                   >
                   <div class="form-group">
-                    <input
+                     <form action="">
+                        
+
+                      <input
                       type="email"
                       id="email-epcl_subscribe_form-3"
                       name="MERGE0"
@@ -954,8 +945,10 @@
                       placeholder="Enter your email address"
                     />
                     <button class="epcl-button submit absolute" type="submit">
-                      Get Started<span class="loader"></span>
+                      Get Started <span class="loader"></span>
                     </button>
+
+                     </form>
                   </div>
                 </form>
                 <div class="clear"></div>
@@ -1066,6 +1059,16 @@
       src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/themes/zento/assets/dist/prism-plugins.min.js?ver=1.3.0"
       id="prismjs-plugins-js"
     ></script> --}}
+
+    
+    
+    <script>
+      @if (Session::has('success'))
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      @endif
+    </script>
+
+
 
 @stack('frontend_js')
   </body>
