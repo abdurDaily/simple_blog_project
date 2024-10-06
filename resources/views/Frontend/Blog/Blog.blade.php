@@ -25,8 +25,15 @@
                         <img  style="height:400px; object-fit: scale-down;" class="img-fluid " src="{{ $blog->blog_image }}" alt="">
                      </div>
                      <div class="details text px-lg-5">
-                         {!! $blog->blog_details !!}
-                     </div>
+                       {!! $blog->blog_details !!}
+                      </div>
+                      <div class="details text px-lg-5">
+                        <pre class="codemirror" style="white-space: pre-wrap;">
+                          <code class="language-php" id="code">
+                              {{ preg_replace('/^\s+$/m', '', trim($blog->code)) }}
+                          </code>
+                      </pre>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,6 +67,31 @@
 <script src="https://code.iconify.design/iconify.min.js"></script>
 
 <script>
+  // Get the CodeMirror element
+var codeMirror = document.querySelector('.codemirror');
+
+// Get the Code Snippet textarea
+var codeSnippet = document.querySelector('#code_snippet');
+
+// Create a flag to track whether the code has already been appended
+var codeAppended = false;
+
+// Add an event listener to the Code Snippet textarea
+codeSnippet.addEventListener('input', function() {
+    // Get the code from the Code Snippet textarea
+    var code = codeSnippet.value;
+
+    // Check if the code has already been appended
+    if (!codeAppended) {
+        // If not, append the code to the CodeMirror element
+        codeMirror.innerHTML = '<code class="language-php">' + code + '</code>';
+        codeAppended = true;
+    }
+});
+</script>
+
+
+<script>
     const facebookIcon = document.querySelector('.facebook-icon');
     const twitterIcon = document.querySelector('.twitter-icon');
 
@@ -71,4 +103,35 @@
     window.open(`https://twitter.com/intent/tweet?url=${window.location.href}`, '_blank');
     });
 </script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+<script>
+  const code = document.getElementById('code');
+const formattedCode = prettier.format(code.textContent, {
+  parser: 'php',
+  printWidth: 80,
+  tabWidth: 4,
+  useTabs: false,
+  semi: true,
+  singleQuote: true,
+  trailingComma: 'all',
+  bracketSpacing: true,
+  arrowParens: 'always',
+  endOfLine: 'auto',
+});
+code.textContent = formattedCode;
+</script>
+@endpush
+
+@push('frontend_css')
+<style>
+  pre {
+    white-space: pre-wrap;
+    max-height: 500px; /* adjust the height to your needs */
+    overflow-y: auto;
+}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
 @endpush

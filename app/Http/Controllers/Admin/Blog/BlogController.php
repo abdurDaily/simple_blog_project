@@ -31,6 +31,7 @@ class BlogController extends Controller
         $blog = new Blog();
         $blog->user_id = Auth::user()->id;
         $blog->blog_title = $request->blog_title;
+        $blog->code = $request->code;
         $blog->blog_details = $request->blog_details;
         $blog->category_id = $request->category_id;
         $blog->save();

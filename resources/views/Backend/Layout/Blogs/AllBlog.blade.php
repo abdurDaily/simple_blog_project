@@ -26,6 +26,9 @@
                         <h6>Title</h6>
                     </th>
                     <th>
+                        <h6>Code</h6>
+                    </th>
+                    <th>
                         <h6>Author</h6>
                     </th>
                     <th>
@@ -55,6 +58,9 @@
                         </td>
                         <td class="min-width">
                         <p>{{ Str::limit($blog->blog_title, 30, '...') }}</p>
+                        </td>
+                        <td class="min-width">
+                        <p>{!! Str::limit($blog->code, 30, '...') !!}</p>
                         </td>
                         <td class="min-width">
                         <p><a href="{{ route('profile.index') }}">{{ $blog->user->name }}</a></p>
