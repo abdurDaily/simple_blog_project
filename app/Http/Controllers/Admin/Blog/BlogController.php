@@ -15,7 +15,11 @@ class BlogController extends Controller
      */
     public function blogIndex(){
        $categorys = Category::select('id','category_name')->get();
+    //    dd($categorys);
        return view('Backend.Layout.Blogs.AddBlog',compact('categorys'));
+    }
+    public function newBlog(){
+       return view('Backend.Layout.Blogs.newBlog');
     }
 
 
@@ -23,27 +27,17 @@ class BlogController extends Controller
      * ADD BLOG
      */
     public function addBlog(Request $request){
+
+
         $request->validate([
-        "blog_title" => 'required',
-        "blog_details" => 'required',
-        "category_id" => 'required'
+          "editor_content" => 'required',
         ]);
+
         $blog = new Blog();
         $blog->user_id = Auth::user()->id;
-        $blog->blog_title = $request->blog_title;
-        $blog->code = $request->code;
-        $blog->blog_details = $request->blog_details;
         $blog->category_id = $request->category_id;
+        $blog->editor_content = $request->editor_content;
         $blog->save();
-        
-        if($request->hasFile('blog_image')){
-            $blog_image = $request->blog_image->extension();
-            $blog_image_name  = 'blog-' . time().'.'.$blog_image;
-            $store_image = $request->blog_image->storeAs("blog", $blog_image_name, 'public');
-            $path_image = env('APP_URL').'/storage/'.$store_image;
-            $blog->blog_image = $path_image;
-            $blog->save();
-        }
         toast('Post Uploaded!', 'success');
         return back();
     }

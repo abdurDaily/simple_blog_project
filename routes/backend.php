@@ -51,6 +51,7 @@ prefix('admin/category/')->name('category.')->group(function () {
  */
 Route::middleware('admin')->
 prefix('admin/blog/')->name('blog.')->group(function () {
+    Route::get('new-blog', [BlogController::class, 'newBlog'])->name('new.blog');
     Route::get('index', [BlogController::class, 'blogIndex'])->name('index');
     Route::post('add', [BlogController::class, 'addBlog'])->name('add');
     Route::get('list', [BlogController::class, 'blogList'])->name('list');
