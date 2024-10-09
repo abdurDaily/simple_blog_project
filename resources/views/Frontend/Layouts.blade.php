@@ -7,6 +7,9 @@
       @yield('OgTags')
 
 
+      @stack('frontend_css')
+
+
     <meta charset="UTF-8" />
     <meta
       name="viewport"

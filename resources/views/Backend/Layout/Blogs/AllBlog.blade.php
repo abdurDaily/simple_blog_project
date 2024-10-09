@@ -1,5 +1,6 @@
 @extends('Backend.Layout.Layout')
 @section('backend_contains')
+
 @push('search')
 <div class="header-search d-none d-md-flex">
     <form action="{{ route('blog.search.blog') }}" method="post">
@@ -23,25 +24,22 @@
                         <h6>SN.</h6>
                     </th>
                     <th>
-                        <h6>Title</h6>
-                    </th>
-                    <th>
-                        <h6>Code</h6>
-                    </th>
-                    <th>
-                        <h6>Author</h6>
+                        <h6>Feature Image</h6>
                     </th>
                     <th>
                         <h6>Details</h6>
                     </th>
+                    
                     <th>
-                        <h6>Image</h6>
+                        <h6>Author</h6>
+                    </th>
+                    
+                    
+                    <th>
+                        <h6>Status</h6>
                     </th>
                     <th>
                         <h6>Action</h6>
-                    </th>
-                    <th>
-                        <h6>Status</h6>
                     </th>
                     </tr>
                     <!-- end table row-->
@@ -53,26 +51,31 @@
 
                     <tr>
                         <td class="min-width">
-                        
-                        <p>{{ $key + $blogs->firstItem() }}</p>
+                          <p>{{ $key + $blogs->firstItem() }}</p>
                         </td>
+
+
                         <td class="min-width">
-                        <p>{{ Str::limit($blog->blog_title, 30, '...') }}</p>
+                          <img style="width: 80px;" src="{{ $blog->feature_image }}" alt="">
                         </td>
+
+
+
                         <td class="min-width">
-                        <p>{!! Str::limit($blog->code, 30, '...') !!}</p>
+                          <p>{{ Str::limit($blog->editor_content, 50, '...')  }}</p>
                         </td>
+
+
+
                         <td class="min-width">
                         <p><a href="{{ route('profile.index') }}">{{ $blog->user->name }}</a></p>
                         </td>
-                        <td class="min-width">
-                        <p>{!! Str::limit($blog->blog_details, 30, '....') !!}</p>
-                        </td>
-                        <td class="min-width">
-                        <div class="employee-image">
-                            <img src="{{ $blog->blog_image == null ? env('APP_URL'). '/assets/images/default/code.svg' : $blog->blog_image }}" alt="">
-                        </div>
-                        </td>
+
+
+
+                  
+
+
                         <td class="min-width">
                             <a style="color: {{ $blog->active_status == 1 ? '#365CF5' : 'red'}}" href="{{ route('blog.active', $blog->id) }}" class="status-btn active-btn">{{ $blog->active_status == 1 ? 'Active' : 'Painding'  }}</a>
                         </td>
@@ -107,3 +110,9 @@
         </div>
     </div>
 @endsection
+
+
+
+
+
+

@@ -2,6 +2,14 @@
 @section('backend_contains')
 
 @push('backend_css')
+<style>
+  .ql-font-family .ql-picker-label polygon{
+    display: none;
+  }
+  .ql-snow .ql-tooltip{
+    z-index: 10000;
+  }
+</style>
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
@@ -25,10 +33,10 @@
       <button class="ql-underline"></button>
       <button class="ql-strike"></button>
     </span>
-    <span class="ql-formats">
+    {{-- <span class="ql-formats">
       <select class="ql-color"></select>
       <select class="ql-background"></select>
-    </span>
+    </span> --}}
     <span class="ql-formats">
       <button class="ql-script" value="sub"></button>
       <button class="ql-script" value="super"></button>
@@ -58,23 +66,54 @@
     <span class="ql-formats">
       <button class="ql-clean"></button>
     </span>
-    <span class="ql-formats bg-info">
-        <select name="category_id" id="" class="form-control py-3" >
-            <option selected disabled>select a category</option>
-            @foreach ($categorys as $category)
-            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-            @endforeach
-        </select>
-    </span>
+
 </div>
 
+
+<div id="editor" >
+</div>
+
+
+
 <form action="{{ route('blog.add') }}" method="post" enctype="multipart/form-data">
-    @csrf
-    
-    <div id="editor">
+  @csrf
+   
+
+  <div class="row mt-3">
+    <div class="col-lg-6">
+        <select style="padding: 20px; border:none;" name="category_id" id="" class="form-control input-style-1 " >
+            <option selected disabled>select a category</option>
+            @foreach ($categorys as $category)
+            <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>{{ $category->category_name }}</option>
+            @endforeach
+        </select>
+
+        @error('category_id')
+            <span style="color: red;">{{ $message }}</span>
+        @enderror
     </div>
 
-    <button type="submit">submit</button>
+    <div class="col-lg-6">
+        <div class="input-style-1 d-flex align-items-center" style="background: #fff; ">
+            <label style="width: 25%; margin-bottom:0; padding-left:15px;" for="blog_image">Blog Image</label>
+            <input  id="blog_image" type="file" name="blog_image" value="{{ old('blog_image') }}" > <br>
+        </div>
+        @error('blog_image')
+            <span style="color: red;">{{ $message }}</span>
+        @enderror
+    </div>
+
+    <div class="col-lg-12">
+        <textarea class="form-control mb-3" placeholder="simple description about this post..." name="about_blog" id="" cols="30" rows="10">{{ old('about_blog') }}</textarea>
+        @error('about_blog')
+            <span style="color: red;">{{ $message }}</span>
+        @enderror
+    </div>
+</div>
+
+  <button class="main-btn primary-btn btn-hover w-25 text-center" type="submit">
+    submit
+  </button>
 </form>
 
 @push('js_contains')
@@ -83,25 +122,28 @@
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 
 <script>
-    const quill = new Quill('#editor', {
+  const quill = new Quill('#editor', {
       modules: {
-        syntax: true,
-        toolbar: '#toolbar-container',
+          syntax: true,
+          toolbar: '#toolbar-container',
       },
       placeholder: 'Compose an epic...',
       theme: 'snow',
-    });
+  });
 
-    const form = document.querySelector('form');
+  // Set the content of the Quill editor
+  quill.root.innerHTML = `{!! old('editor_content') ?? '' !!}`;
 
-    form.addEventListener('submit', function(event) {
+  const form = document.querySelector('form');
+
+  form.addEventListener('submit', function(event) {
       const editorContent = quill.root.innerHTML;
       const hiddenInput = document.createElement('input');
       hiddenInput.type = 'hidden';
       hiddenInput.name = 'editor_content';
       hiddenInput.value = editorContent;
       form.appendChild(hiddenInput);
-    });
+  });
 </script>
 @endpush
 

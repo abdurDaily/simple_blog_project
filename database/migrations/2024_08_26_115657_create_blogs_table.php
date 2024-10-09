@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->string('feature_image')->default(env('APP_URL'). '/assets/images/default/code.svg');
+            $table->string('about_blog');
             $table->longText('editor_content');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->boolean('active_status')->default(0);
             $table->timestamps();
         });
     }

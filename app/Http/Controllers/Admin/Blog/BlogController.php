@@ -28,16 +28,33 @@ class BlogController extends Controller
      */
     public function addBlog(Request $request){
 
+        // dd($request->all());
 
         $request->validate([
+          "category_id" => 'required',
+          "blog_image" => 'required',
+          "about_blog" => 'required',
           "editor_content" => 'required',
         ]);
 
         $blog = new Blog();
         $blog->user_id = Auth::user()->id;
         $blog->category_id = $request->category_id;
+        $blog->about_blog = $request->about_blog;
+        $blog->editor_content = $request->editor_content;
         $blog->editor_content = $request->editor_content;
         $blog->save();
+
+        if($request->hasFile('blog_image')){
+            $blog_image = $request->blog_image->extension();
+            $blog_image_name  = 'blog-' . time().'.'.$blog_image;
+            $store_image = $request->blog_image->storeAs("blog", $blog_image_name, 'public');
+            $path_image = env('APP_URL').'/storage/'.$store_image;
+            $blog->feature_image = $path_image;
+            $blog->save();
+        }
+
+
         toast('Post Uploaded!', 'success');
         return back();
     }
@@ -125,3 +142,4 @@ class BlogController extends Controller
         return view('Backend.Layout.Blogs.SearchBlog', compact('search','blogs'));
     }
 }
+
