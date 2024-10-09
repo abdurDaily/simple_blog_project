@@ -83,22 +83,24 @@ class BlogController extends Controller
       */
     public function updateBlog(Request $request, $id){
 
-        $updateBlog = Blog::find($id);
-        $updateBlog->user_id = Auth::user()->id;
-        $updateBlog->blog_title = $request->blog_title;
-        $updateBlog->blog_details = $request->blog_details;
-        $updateBlog->category_id = $request->category_id;
-        $updateBlog->save();
+        // dd($request->all());
+
+        $blog = Blog::find($id);
+        $blog->user_id = Auth::user()->id;
+        $blog->category_id = $request->category_id;
+        $blog->about_blog = $request->about_blog;
+        $blog->editor_content = $request->editor_content;
+        $blog->editor_content = $request->editor_content;
+        $blog->save();
         
         if($request->hasFile('blog_image')){
             $blog_image = $request->blog_image->extension();
             $blog_image_name  = 'blog-' . time().'.'.$blog_image;
             $store_image = $request->blog_image->storeAs("blog", $blog_image_name, 'public');
             $path_image = env('APP_URL').'/storage/'.$store_image;
-            $updateBlog->blog_image = $path_image;
-            $updateBlog->save();
+            $blog->blog_image = $path_image;
+            $blog->save();
         }
-        
         return redirect()->route('blog.list');
     }
 
@@ -134,11 +136,8 @@ class BlogController extends Controller
      */
     public function blogSearch(Request $request){
         $blogs = Blog::latest()->with('user')->simplePaginate(10);
-        $search = Blog::where('blog_title', 'like', '%'.$request->search_blog.'%')
-             ->orWhere('blog_details', 'like', '%'.$request->search_blog.'%')
+        $search = Blog::where('about_blog', 'like', '%'.$request->about_blog.'%')
              ->get();
-
-            //  dd($search);
         return view('Backend.Layout.Blogs.SearchBlog', compact('search','blogs'));
     }
 }

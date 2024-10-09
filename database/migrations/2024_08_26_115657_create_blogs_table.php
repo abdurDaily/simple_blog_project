@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->string('feature_image')->default(env('APP_URL'). '/assets/images/default/code.svg');
-            $table->string('about_blog');
+            $table->longText('about_blog');
             $table->longText('editor_content');
             $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->boolean('active_status')->default(0);

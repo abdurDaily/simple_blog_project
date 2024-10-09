@@ -27,7 +27,7 @@
                         <h6>Feature Image</h6>
                     </th>
                     <th>
-                        <h6>Details</h6>
+                        <h6>About Blog</h6>
                     </th>
                     
                     <th>
@@ -62,7 +62,7 @@
 
 
                         <td class="min-width">
-                          <p>{{ Str::limit($blog->editor_content, 50, '...')  }}</p>
+                          <p>{{ Str::limit($blog->about_blog, 50, '...')  }}</p>
                         </td>
 
 

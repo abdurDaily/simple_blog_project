@@ -1,30 +1,34 @@
 @extends('Frontend.Layouts')
 @section('frontend_contains')
-@push('frontend_css')
-  <style>
-@font-face{
-    font-family: 'helvetica';
-    src: url('{{ asset('assets/fonts/Helvetica-Bold.ttf') }}');
-}
-    .ql-code-block-container{
-        background-color: #251f1f;
-        color: #fff;
-        text-align: left;
-        line-height: 40px;
-    }
-    .card-body{
-        font-family:helvetica;
-        font-weight: lighter;
+    @push('frontend_css')
+        <style>
+            @font-face {
+                font-family: 'helvetica';
+                src: url('{{ asset('assets/fonts/Helvetica-Bold.ttf') }}');
+            }
 
-    }
-    .ql-code-block-container .ql-ui{
-        display: none;
-    }
-   #editor .ql-tooltip .ql-editing {
-        z-index: 3500 !important;
-    }
-  </style>
-@endpush
+            .ql-code-block-container {
+                background-color: #251f1f;
+                color: #fff;
+                text-align: left;
+                line-height: 40px;
+            }
+
+            .card-body {
+                font-family: helvetica;
+                font-weight: lighter;
+
+            }
+
+            .ql-code-block-container .ql-ui {
+                display: none;
+            }
+
+            #editor .ql-tooltip .ql-editing {
+                z-index: 3500 !important;
+            }
+        </style>
+    @endpush
     <div class="grid-container mt-5 ">
         <div class="row gy-3">
             @forelse ($allBlogList as $blog)
@@ -48,6 +52,3 @@
         </div>
     </div>
 @endsection
-
-
-
