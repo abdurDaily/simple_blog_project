@@ -48,7 +48,7 @@ class HomeController extends Controller
      * ALL BLOG LIST 
      */
     public function allBlogsList(){
-      $allBlogList = Blog::where('active_status',1)->latest()->simplepaginate(9);
+      $allBlogList = Blog::where('active_status',1)->latest()->simplepaginate(10);
       return view('Frontend.Blog.AllBlogList',compact('allBlogList'));
     }
     /**

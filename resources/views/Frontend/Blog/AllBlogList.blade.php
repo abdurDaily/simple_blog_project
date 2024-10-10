@@ -7,6 +7,16 @@
                 src: url('{{ asset('assets/fonts/Helvetica-Bold.ttf') }}');
             }
 
+            .see_btn {
+                background: #365CF5;
+                color: #fff;
+                display: inline-block;
+                padding: 10px 20px;
+            }
+            .see_btn:hover{
+                color: #fff;
+            }
+
             .ql-code-block-container {
                 background-color: #251f1f;
                 color: #fff;
@@ -30,22 +40,21 @@
         </style>
     @endpush
     <div class="grid-container mt-5 ">
-        <div class="row gy-3">
+        <div class="row g-3">
             @forelse ($allBlogList as $blog)
-                <div class="col-xl-9">
-                    <div class=""
-                        style="background: #fff; padding:20px; box-shadow:3px 3px 30px #88888839; height:100%;">
-                        <div class="blog-img text-center">
-                            <img class="img-fluid" style=" height:200px; object-fit:cover;" src="{{ $blog->blog_image }}"
-                                alt="">
-                        </div>
-                        <div class="card-body">
-                            <img src="{{ $blog->feature_image }}" alt="">
-                            {!! $blog->editor_content !!}
+                <div class="col-xl-6" >
+                    <div class="shadow py-3">
+                        <div class="row mx-0">
+                            <div class="col-lg-4">
+                                <img class="img-fluid" src="{{ $blog->feature_image }}" alt="">
+                            </div>
+                            <div class="col-lg-8">
+                                <span>{{ Str::limit($blog->about_blog, 80, '.....') }}</span> <br>
+                                <a href="#" class="see_btn">See more</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                {{ $allBlogList->links() }}
             @empty
                 <h4>No blog data hlw found..!</h4>
             @endforelse
