@@ -100,11 +100,11 @@
     
                 <div class="col-lg-6">
                     <div class="input-style-1 d-flex align-items-center mb-2" style="background: #fff; ">
-                        <label style="width: 25%; margin-bottom:0; padding-left:15px;" for="blog_image">Blog Image</label>
-                        <input id="blog_image" type="file" name="blog_image" value="{{ old('blog_image') }}"> <br>
+                        <label style="width: 25%; margin-bottom:0; padding-left:15px;" for="feature_image">Blog Image</label>
+                        <input id="feature_image" type="file" name="feature_image" value="{{ old('feature_image') }}"> <br>
                     </div>
                     <img style="width:100px;" src="{{ $editBlog->feature_image }}" alt=""> <br> <br>
-                    @error('blog_image')
+                    @error('feature_image')
                         <span style="color: red;">{{ $message }}</span>
                     @enderror
                 </div>
@@ -134,29 +134,51 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
   
-  <script>
-    const quill = new Quill('#editor', {
-        modules: {
-            syntax: true,
-            toolbar: '#toolbar-container',
+<script>
+  const quill = new Quill('#editor', {
+    modules: {
+      syntax: true,
+      toolbar: '#toolbar-container',
+      imageUpload: {
+        upload: function(file) {
+          // You can customize the upload functionality here
+          // For example, you can use an AJAX request to upload the image to your server
+          return new Promise((resolve, reject) => {
+            const formData = new FormData();
+            formData.append('image', file);
+            // Replace with your server-side upload API
+            fetch('/upload-image', {
+              method: 'POST',
+              body: formData,
+            })
+              .then(response => response.json())
+              .then(result => {
+                resolve(result.url);
+              })
+              .catch(error => {
+                reject(error);
+              });
+          });
         },
-        placeholder: 'Compose an epic...',
-        theme: 'snow',
-    });
-  
-    // Set the content of the Quill editor
-    quill.root.innerHTML = `{!! $editBlog->editor_content ?? '' !!}`;
-  
-    const form = document.querySelector('form');
-  
-    form.addEventListener('submit', function(event) {
-        const editorContent = quill.root.innerHTML;
-        const hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = 'editor_content';
-        hiddenInput.value = editorContent;
-        form.appendChild(hiddenInput);
-    });
+      },
+    },
+    placeholder: 'Compose an epic...',
+    theme: 'snow',
+  });
+
+  // Set the content of the Quill editor
+  quill.root.innerHTML = `{!! $editBlog->editor_content ?? '' !!}`;
+
+  const form = document.querySelector('form');
+
+  form.addEventListener('submit', function(event) {
+    const editorContent = quill.root.innerHTML;
+    const hiddenInput = document.createElement('input');
+    hiddenInput.type = 'hidden';
+    hiddenInput.name = 'editor_content';
+    hiddenInput.value = editorContent;
+    form.appendChild(hiddenInput);
+  });
 </script>
   @endpush
 

@@ -28,13 +28,8 @@
         <div class="row" id="blog">
 
 
-            <div class="col-xl-9 blog_detail_find">
+            <div class="col-xl-8 blog_detail_fin">
                 <div>
-                    <div class="card-header">
-                        {{-- <h2 class="main-title title ularge">{{ $blog->blog_title }}</h2> --}}
-                    </div>
-
-
                     <div class="card-body">
                         <h1>Navigating Missing Data Challenges with XGBoost</h1>
                         <span>By <b>{{ $blog->user->name }}</b> on {{ $blog->created_at->format('d M, Y') }} in Data Science</span>
@@ -50,8 +45,8 @@
 
 
 
-                        <div class="blog_img text-center ">
-                            <img style="height:400px; object-fit: scale-down;" class="img-fluid "
+                        <div class="blog_img  mt-4">
+                            <img style=" width:100%; object-fit:cover;" class="img-fluid "
                                 src="{{ $blog->feature_image }}" alt="">
                         </div>
 
@@ -80,7 +75,7 @@
             </div>
 
 
-            <div class="col-xl-3">
+            <div class="col-xl-4">
                 @forelse ($categorys as $key => $category)
                     <a href="{{ route('blog.all', $category->id) }}" class="items">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20">

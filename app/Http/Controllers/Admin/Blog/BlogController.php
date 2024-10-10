@@ -93,12 +93,12 @@ class BlogController extends Controller
         $blog->editor_content = $request->editor_content;
         $blog->save();
         
-        if($request->hasFile('blog_image')){
-            $blog_image = $request->blog_image->extension();
+        if($request->hasFile('feature_image')){
+            $blog_image = $request->feature_image->extension();
             $blog_image_name  = 'blog-' . time().'.'.$blog_image;
-            $store_image = $request->blog_image->storeAs("blog", $blog_image_name, 'public');
+            $store_image = $request->feature_image->storeAs("blog", $blog_image_name, 'public');
             $path_image = env('APP_URL').'/storage/'.$store_image;
-            $blog->blog_image = $path_image;
+            $blog->feature_image = $path_image;
             $blog->save();
         }
         return redirect()->route('blog.list');

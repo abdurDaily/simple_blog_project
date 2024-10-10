@@ -622,7 +622,7 @@
 
       <!-- NAV -->
       <header id="header" class="compact enable-sticky">
-        <div class="menu-wrapper">
+        <div class="menu-wrapper" style="padding-top: 0px;">
           <div class="grid-container">
             <div class="epcl-flex grid-wrapper">
               <nav class="main-nav">
