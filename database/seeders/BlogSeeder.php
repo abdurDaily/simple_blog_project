@@ -15,9 +15,10 @@ class BlogSeeder extends Seeder
     {
         $blog = new Blog();
         $blog->category_id = 1;
+        $blog->blog_title = "Navigating Missing Data Challenges with XGBoost";
         $blog->user_id = 1;
         $blog->about_blog = "testing...";
-        $blog->editor_content = "Test blog title...";
+        $blog->editor_content = "testing...";
         $blog->save();
     }
 }

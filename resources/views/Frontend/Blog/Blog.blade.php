@@ -20,11 +20,11 @@
             font: bold 28px / 1.1em;
         }
 
-        .ql-code-block-container {
-            position: relative;
+        #wrapper{
+            font-family: 'Helvetica Neue', sans-serif;
         }
 
-        .copy-ql-code-button {
+        #blog .ql-code-block-container .copy-ql-code-button {
             position: absolute;
             top: 0;
             right: 0;
@@ -37,6 +37,7 @@
         }
 
         .ql-code-block-container {
+            position: relative;
             background: #211D3F;
             color: #fff;
             padding: 10px 20px;
@@ -60,9 +61,9 @@
                 {{-- <button class="copy-ql-code-button" data-clipboard-target=".ql-code-block-container">Copy Code</button> --}}
                 <div>
                     <div class="card-body">
-                        <h1>Navigating Missing Data Challenges with XGBoost</h1>
-                        <span>By <b>{{ $blog->user->name }}</b> on {{ $blog->created_at->format('d M, Y') }} in Data
-                            Science</span>
+                        <h1>{{ $blog->blog_title }}</h1>
+                        <span>By <b>{{ $blog->user->name }}</b> on {{ $blog->created_at->format('d M, Y') }} in <b
+                                style="background: yellow; font-family:sans-serif;">{{ $blog->category->category_name }}</b> </span>
                         <div class="share-icons">
                             <span>share in social plateform :</span>
                             <a href="#" class="facebook-icon">
@@ -94,7 +95,7 @@
                         <div class="details text px-lg-5">
                             {!! $blog->blog_details !!}
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
@@ -102,9 +103,10 @@
 
             <div class="col-xl-4">
 
-                <div class="row mb-5">
+                <div class="row mb-5 px-3">
+
                     <div class="col-4">
-                        <img  class="img-fluid" src="{{ $blog->user->image }}" alt="">
+                        <img class="img-fluid" src="{{ $blog->user->image }}" alt="">
                     </div>
                     <div class="col-8">
                         <h6>{{ $blog->user->name }}</h6>
@@ -114,50 +116,57 @@
                 </div>
 
 
-                <div class="row ">
-                    <div class="col-3 text-center d-flex align-items-center justify-content-center">
-                        <img style="border-radius: 50%; width:70px; height:70px;" class="img-fluid" src="{{ $blog->user->image }}" alt="">
-                    </div>
-                    <div class="col  ">
-                        <a href="#"><span>{!! Str::limit($blog->user->about_author, 100, '....see more') !!}</span></a>
-                    </div>
+                <div class="row px-3">
+                    <h4>relevent blog's</h4>
+
+                    @forelse ($releventBlogs as $blog)
+                        <div class=" d-flex border-bottom mb-3 pb-4">
+                            <img style="border-radius: 50%; width:70px; height:70px;" class="img-fluid"
+                                src="{{ $blog->feature_image }}" alt="">
+                            <div>
+                                <a style="display: inline-block; padding-left:10px;" href="{{ route('blog.details', $blog->id) }}"><span>{!! Str::limit($blog->blog_title, 60, '....see more') !!}</span></a> <br>
+                                <span style="display: inline-block; padding-left:10px;"><span style="font-weight: 400;">{{ $blog->created_at->diffForHumans() }} </span></span>
+                            </div>
+                        </div>
+                    @empty
+                        <h4>No relevent data found!</h4>
+                    @endforelse
+
                 </div>
 
-                
-                <div class="row ">
-                    <div class=" col-3 text-center d-flex align-items-center justify-content-center">
-                        <img style="border-radius: 50%; width:70px; height:70px;" class="img-fluid" src="{{ $blog->user->image }}" alt="">
-                    </div>
-                    <div class="col  ">
-                        <a href="#"><span>{!! Str::limit($blog->user->about_author, 100, '....see more') !!}</span></a>
-                    </div>
-                </div>
-
-                
-
-                <div class="row">
-                    <div class="col-3">
-                        <img style="border-radius: 50%;" class="img-fluid" src="{{ $blog->user->image }}" alt="">
-                    </div>
-                    <div class="col-9">
-                        <a href="#"><span>{!! Str::limit($blog->user->about_author, 100, '....see more') !!}</span></a>
-                    </div>
-                </div>
-
-
+                <h4 style="font-size: 16px; text-transform:lowercase; font-weight:400; margin-bottom:10px;">All Category's Post</h4>
                 @forelse ($categorys as $key => $category)
-                    <a href="{{ route('blog.all', $category->id) }}" class="items">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 20 20">
-                            <rect width="20" height="20" fill="none" />
-                            <path fill="currentColor"
-                                d="M8.5 2a.5.5 0 0 1 .5.5v4.025A5 5 0 0 1 13.475 11H17.5a.5.5 0 0 1 0 1h-4.025A5 5 0 0 1 9 16.475V17.5a.5.5 0 0 1-1 0v-1.025A5 5 0 0 1 3.525 12H2.5a.5.5 0 0 1 0-1h1.025A5 5 0 0 1 8 6.525V2.5a.5.5 0 0 1 .5-.5M4.531 12A4 4 0 0 0 8 15.47V12zM8 11V7.531A4 4 0 0 0 4.531 11zm1 1v3.47A4 4 0 0 0 12.47 12zm3.47-1A4 4 0 0 0 9 7.531V11z" />
-                        </svg>
-                        {{ $category->category_name }}</a>
+                    <a href="{{ route('blog.all', $category->id) }}" style="
+                    background: #6A4EE9;
+                    color:#fff;
+                    display:inline-block;
+                    padding:5px 20px;
+                    ">{{ $category->category_name }}</a>
                 @empty
                     <h4>No category found!</h4>
                 @endforelse
+
+
+
+                
             </div>
 
+
+            <h4>Latest Post's:</h4>
+            @forelse ($latestPost as $blog)
+                  
+            <div class="col-xl-3 col-lg-4 col-md-6">
+              <div class="border">
+                <img class="img-fluid" src="{{ $blog->feature_image }}" alt="">
+                <div class="card-body p-3">
+                    <a href="{{ route('blog.details', $blog->id) }}"><h5 class="card-title">{{ Str::limit($blog->blog_title, 50, '...') }}</h5></a>
+                    <span style="font-size: 14px; font-weight:400;"> Last updated at: {{ $blog->updated_at->diffForHumans() }}</span>
+                </div>
+              </div>
+            </div>
+            @empty
+            <h4>No relevent data found!</h4>
+        @endforelse
 
 
         </div>
@@ -218,25 +227,27 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const qlCodeContainers = document.querySelectorAll('.ql-code-block-container');
-    
+
             qlCodeContainers.forEach((container) => {
                 const codeTextContainer = document.createElement('div');
                 codeTextContainer.classList.add('code-text-container');
                 codeTextContainer.innerHTML = container.innerHTML;
                 container.innerHTML = '';
                 container.appendChild(codeTextContainer);
-    
+
                 const copyButton = document.createElement('button');
                 copyButton.classList.add('copy-ql-code-button');
                 copyButton.textContent = 'Copy Code';
                 container.appendChild(copyButton);
-    
+
                 copyButton.addEventListener('click', () => {
-                    const codeText = codeTextContainer.innerText.replace('PlainBashC++C#CSSDiffHTML/XMLJavaJavaScriptMarkdownPHPPythonRubySQL', '');
+                    const codeText = codeTextContainer.innerText.replace(
+                        'PlainBashC++C#CSSDiffHTML/XMLJavaJavaScriptMarkdownPHPPythonRubySQL',
+                        '');
                     navigator.clipboard.writeText(codeText.trim()).then(() => {
                         copyButton.textContent = 'Copied!';
                         setTimeout(() => {
@@ -260,21 +271,3 @@
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" />
 @endpush
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

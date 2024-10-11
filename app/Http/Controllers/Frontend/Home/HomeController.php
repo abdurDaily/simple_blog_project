@@ -24,11 +24,15 @@ class HomeController extends Controller
      * BLOG DETAILS
      */
     public function blogDetails($id){
-        $blog = Blog::with('user')->find($id);
-        $categorys = Category::where('category_status',1)->get();
-        // dd($blog);
-        return view('Frontend.Blog.Blog', compact('blog', 'categorys'));
-    }
+      $blog = Blog::with(['user', 'category'])->find($id);
+      $categoryId = $blog->category_id; 
+      $releventBlogs = Blog::where('category_id', $categoryId) 
+          ->where('id', '!=', $id) 
+          ->latest('updated_at')->get();
+      $latestPost = Blog::latest('updated_at')->paginate(4);
+      $categorys = Category::where('category_status', 1)->get();
+      return view('Frontend.Blog.Blog', compact('blog', 'categorys', 'releventBlogs','latestPost'));
+  }
     /**
      * ALL BLOG LIST 
      */

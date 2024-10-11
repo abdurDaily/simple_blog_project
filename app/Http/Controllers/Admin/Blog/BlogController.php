@@ -31,14 +31,16 @@ class BlogController extends Controller
         // dd($request->all());
 
         $request->validate([
+          "blog_title" => 'required',
           "category_id" => 'required',
-          "blog_image" => 'required',
+          "blog_image" => 'required|mimes:png,jpg,webp,jpeg',
           "about_blog" => 'required',
           "editor_content" => 'required',
         ]);
 
         $blog = new Blog();
         $blog->user_id = Auth::user()->id;
+        $blog->blog_title = $request->blog_title;
         $blog->category_id = $request->category_id;
         $blog->about_blog = $request->about_blog;
         $blog->editor_content = $request->editor_content;
@@ -87,6 +89,7 @@ class BlogController extends Controller
 
         $blog = Blog::find($id);
         $blog->user_id = Auth::user()->id;
+        $blog->blog_title = $request->blog_title;
         $blog->category_id = $request->category_id;
         $blog->about_blog = $request->about_blog;
         $blog->editor_content = $request->editor_content;

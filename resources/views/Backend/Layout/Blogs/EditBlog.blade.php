@@ -93,6 +93,18 @@
             @method('put')
 
             <div class="row mt-3">
+
+              <div class="col-lg-12">
+                <div class="input-style-1">
+                  <label for="blog_title">blog title</label> 
+                  <textarea name="blog_title" id="blog_title" cols="30" placeholder="blog title...." rows="3">{{ old('blog_title') }}</textarea>
+                  @error('blog_title')
+                      <span style="color: red;">{{ $message }}</span>
+                  @enderror
+                </div>
+              </div>
+
+              
                 <div class="col-lg-6">
                     <select style="padding: 20px; border:none;" name="category_id" id=""
                         class="form-control input-style-1 ">
