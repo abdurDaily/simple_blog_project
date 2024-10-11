@@ -3,11 +3,21 @@
 
 @push('backend_css')
 <style>
+  
   .ql-font-family .ql-picker-label polygon{
     display: none;
   }
   .ql-snow .ql-tooltip{
     z-index: 10000;
+  }
+  #editor .ql-editor{
+    height: 450px;
+  }
+  #editor .ql-editor p img{
+    height: 200px;
+    object-fit: cover;
+    padding: 20px;
+    display: block;
   }
 </style>
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
@@ -122,28 +132,33 @@
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 
 <script>
-  const quill = new Quill('#editor', {
-      modules: {
-          syntax: true,
-          toolbar: '#toolbar-container',
-      },
-      placeholder: 'Compose an epic...',
-      theme: 'snow',
-  });
+ const quill = new Quill('#editor', {
+  modules: {
+    syntax: true,
+    toolbar: '#toolbar-container',
+    imageResize: {
+      displaySize: true,
+    },
+  },
+  placeholder: 'Compose an epic...',
+  theme: 'snow',
+});
 
-  // Set the content of the Quill editor
-  quill.root.innerHTML = `{!! old('editor_content') ?? '' !!}`;
+// Set the content of the Quill editor
+quill.root.innerHTML = `{!! old('editor_content') ?? '' !!}`;
 
-  const form = document.querySelector('form');
+const form = document.querySelector('form');
 
-  form.addEventListener('submit', function(event) {
-      const editorContent = quill.root.innerHTML;
-      const hiddenInput = document.createElement('input');
-      hiddenInput.type = 'hidden';
-      hiddenInput.name = 'editor_content';
-      hiddenInput.value = editorContent;
-      form.appendChild(hiddenInput);
-  });
+form.addEventListener('submit', function(event) {
+  const editorContent = quill.root.innerHTML;
+  const hiddenInput = document.createElement('input');
+  hiddenInput.type = 'hidden';
+  hiddenInput.name = 'editor_content';
+  hiddenInput.value = editorContent;
+  form.appendChild(hiddenInput);
+});
+
+$('#editor .ql-editor p img').after('<br> <br>');
 </script>
 @endpush
 

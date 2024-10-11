@@ -26,6 +26,7 @@ class HomeController extends Controller
     public function blogDetails($id){
         $blog = Blog::with('user')->find($id);
         $categorys = Category::where('category_status',1)->get();
+        // dd($blog);
         return view('Frontend.Blog.Blog', compact('blog', 'categorys'));
     }
     /**

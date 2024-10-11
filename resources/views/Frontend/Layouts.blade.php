@@ -621,8 +621,10 @@
 
 
       <!-- NAV -->
-      <header id="header" class="compact enable-sticky">
-        <div class="menu-wrapper" style="padding-top: 0px;">
+      <header id="header" class="compact enable-sticky" style="width: 100%;
+    top: -31px !important;
+    position: absolute;">
+        <div class="menu-wrapper" style="padding-top: 0px; ">
           <div class="grid-container">
             <div class="epcl-flex grid-wrapper">
               <nav class="main-nav">

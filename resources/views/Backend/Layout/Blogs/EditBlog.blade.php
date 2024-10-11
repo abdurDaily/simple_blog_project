@@ -7,8 +7,17 @@
   .ql-font-family .ql-picker-label polygon{
     display: none;
   }
+  #editor .ql-editor{
+    height: 500px;
+  }
   .ql-snow .ql-tooltip{
     z-index: 10000;
+  }
+  .ql-direction-rtl img{
+    width: 400px;
+    margin: 10px 0;
+    display: block;
+    text-align: left;
   }
 </style>
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
