@@ -97,7 +97,7 @@
               <div class="col-lg-12">
                 <div class="input-style-1">
                   <label for="blog_title">blog title</label> 
-                  <textarea name="blog_title" id="blog_title" cols="30" placeholder="blog title...." rows="3">{{ old('blog_title') }}</textarea>
+                  <textarea name="blog_title" id="blog_title" cols="30" placeholder="blog title...." rows="3" value="{{ old('blog_title') }}">{{ $editBlog->blog_title }}</textarea>
                   @error('blog_title')
                       <span style="color: red;">{{ $message }}</span>
                   @enderror
@@ -131,7 +131,8 @@
                 </div>
     
                 <div class="col-lg-12">
-                    <textarea class="form-control mb-3" placeholder="simple description about this post..." name="about_blog" id=""
+                    <label for="about_blog">about blog</label>
+                    <textarea class="form-control mb-3" placeholder="simple description about this post..." name="about_blog" id="about_blog"
                         cols="30" rows="10">{{ $editBlog->about_blog }}</textarea>
                     @error('about_blog')
                         <span style="color: red;">{{ $message }}</span>

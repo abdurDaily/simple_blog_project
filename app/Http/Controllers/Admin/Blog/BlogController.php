@@ -58,7 +58,7 @@ class BlogController extends Controller
 
 
         toast('Post Uploaded!', 'success');
-        return back();
+        return redirect()->route('blog.list');
     }
 
     /**
@@ -84,7 +84,13 @@ class BlogController extends Controller
       * UPDATE BLOG
       */
     public function updateBlog(Request $request, $id){
-
+        $request->validate([
+            "blog_title" => 'required',
+            "category_id" => 'required',
+            "blog_image" => 'required|mimes:png,jpg,webp,jpeg',
+            "about_blog" => 'required',
+            "editor_content" => 'required',
+          ]);
         // dd($request->all());
 
         $blog = Blog::find($id);
@@ -104,6 +110,7 @@ class BlogController extends Controller
             $blog->feature_image = $path_image;
             $blog->save();
         }
+        toast('Post Updated!', 'success');
         return redirect()->route('blog.list');
     }
 
