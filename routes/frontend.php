@@ -15,7 +15,7 @@ Route::prefix('/')->name('home.')->group(function () {
  * BLOG
  */
 Route::prefix('/blog')->name('blog.')->group(function () {
-    Route::get('/details/{id}', [HomeController::class, 'blogDetails'])->name('details');
+    Route::get('/details/{id}', [HomeController::class, 'blogDetails'])->where('id', '[0-9]+')->name('details');
     Route::get('/blogs', [HomeController::class, 'allBlogsList'])->name('all.list');
     Route::get('/all-blogs/{id}', [HomeController::class, 'allBlogs'])->name('all');
     Route::get('/search-blog', [HomeController::class, 'searchBlog'])->name('search');
@@ -30,9 +30,14 @@ Route::prefix('/video')->name('video.')->group(function () {
 });
 
 
+// Route::any('/{any}', function(){
+//     return view('error');
+// });
 
 
-
+Route::fallback(function(){
+    return view('errors.404');
+});
 
 
 

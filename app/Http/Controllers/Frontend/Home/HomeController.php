@@ -24,11 +24,13 @@ class HomeController extends Controller
      * BLOG DETAILS
      */
     public function blogDetails($id){
-      $blog = Blog::with(['user', 'category'])->find($id);
+      $blog = Blog::with(['user', 'category'])
+      ->where('active_status',1)->findOrFail($id);
+
       $categoryId = $blog->category_id; 
       $releventBlogs = Blog::where('category_id', $categoryId) 
           ->where('id', '!=', $id) 
-          ->latest('updated_at')->get();
+          ->latest('updated_at')->paginate(5);
       $latestPost = Blog::latest('updated_at')->paginate(4);
       $categorys = Category::where('category_status', 1)->get();
       return view('Frontend.Blog.Blog', compact('blog', 'categorys', 'releventBlogs','latestPost'));
@@ -44,23 +46,16 @@ class HomeController extends Controller
      * SEARCH BLOG 
      */
     public function searchBlog(Request $request){
-      $blogs = Blog::where('blog_title', 'like' , '%' . $request->blog_search . '%')
-                     ->orWhere('blog_details', 'like', '%' . $request->blog_search .'%')
-                       ->get(); 
+      $blogs = Blog::where('about_blog', 'like' , '%' . $request->search_blog . '%')
+                     ->orWhere('blog_title', 'like', '%' . $request->search_blog .'%')
+                       ->get();
       return view('Frontend.Blog.SearchBlog', compact('blogs'));
     } 
     /**
      * ALL BLOG LIST 
      */
     public function allBlogsList(){
-      $allBlogList = Blog::where('active_status',1)->latest()->simplepaginate(10);
+      $allBlogList = Blog::where('active_status',1)->latest('updated_at')->paginate(8);
       return view('Frontend.Blog.AllBlogList',compact('allBlogList'));
     }
-    /**
-     * CATEGORY WISE BLOG LIST 
-     */
-    // public function categoryForAside(){
-      
-    //   dd($categorys);
-    // }
 }

@@ -2,6 +2,16 @@
 <html lang="en-US" prefix="og: http://ogp.me/ns#">
   <head>
 
+    <style>
+      
+    #wrapper{
+      background: #fff; 
+    }
+    .menu-wrapper{
+      box-shadow: 3px 3px 30px #e9d4d477;
+      border: none  ;
+    }
+    </style>
 
 
       @yield('OgTags')
@@ -626,7 +636,7 @@
     position: absolute;">
         <div class="menu-wrapper" style="padding-top: 0px; ">
           <div class="grid-container">
-            <div class="epcl-flex grid-wrapper">
+            <div class="epcl-flex grid-wrapper" style="padding: 10px 0;">
               <nav class="main-nav">
                 <ul class="menu">
                   <li class="search-menu-item">
@@ -704,18 +714,14 @@
 
               <div class="form-group">
                 
-               <form class="subscribe-form" action="{{ route('message.store.message') }}" method="POST">
+               <form class="subscribe-form" action="{{ route('blog.search') }}" method="get">
                
                 @csrf
-                <label class="title small" for="email-epcl_subscribe_form-2">Let's connect</label>
+                <label class="title small" for="email-epcl_subscribe_form-2 " style="color:#fff;">Serch by blog title</label>
                 <div class="form-group">
-                  <input type="email" id="email-epcl_subscribe_form-2" name="subscribe" class="inputbox large" required placeholder="Enter your email address">
-                  <button class="epcl-button submit absolute" type="submit">Subscribe <span class="loader"></span></button>
+                  <input  id="email-epcl_subscribe_form-2" name="search_blog" class="inputbox large" required placeholder="search by blog title..">
+                  <button class="epcl-button submit absolute" type="submit">Search<span class="loader"></span></button>
                 </div>
-                @if (Session::has('success'))
-                  <a id="flash-message-anchor"></a>
-                  <div class="alert alert-success">{{ Session::get('success') }} </div>
-                @endif
               </form>
 
 
@@ -731,7 +737,7 @@
         
 
 
-      <footer id="footer" class="hide-default">
+      <footer id="footer" class="hide-default" style="box-shadow: 3px 3px 30px #e9d4d477; padding-top:30px;">
         <div class="widgets grid-container">
           <div class="hide-on-mobile hide-on-tablet default-sidebar">
             <section

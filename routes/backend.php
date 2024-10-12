@@ -111,4 +111,6 @@ Route::middleware(['admin', 'verified'])->name('dashboard')->
 prefix('dashboard')->name('dashboard.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 });
+
+
 require __DIR__.'/auth.php';

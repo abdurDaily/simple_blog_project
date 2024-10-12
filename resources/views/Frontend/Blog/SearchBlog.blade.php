@@ -13,7 +13,7 @@
                             <a style="color:#6A4EE9; font-weight:bold;" href="{{ route('blog.details', $blog->id) }}">{{ Str::limit($blog->blog_title, 40, '...') }}</a>
                         </h4>
                         <div class="details mt-3">
-                            {!!  Str::limit($blog->blog_details, 150, '.....') !!}
+                            {!!  Str::limit($blog->about_blog, 150, '.....') !!}
                         </div>
                         <div class="btn-items text-end mt-3">
                             <a style="border: 1px solid #937EEF; color:#937EEF; padding:8px 30px; text-transform:uppercase; display:inline-block;" href="{{ route('blog.details', $blog->id) }}">See More</a>
