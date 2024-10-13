@@ -194,9 +194,9 @@
                                         <div>
                                             <img class="me-3" style="object-fit: cover;float: left; height:100px; width:100px; " src="http://127.0.0.1:8000/storage/blog/blog-1728754711.jpg" alt="">
                                             <h4 style="color:#555555 ;line-height: 30px;font-weight:bold;">{{ Str::limit($blog->blog_title, 100, '.....') }}</h4>
-                                            <b style="margin-bottom:10px; display:inline-block;">{{ $blog->created_at }}</b> <br>
-                                            <span style="color: #555555;">There is probably no IT expert who has not dealt with the DEV community, dedicated to many fields of programming and development. The platform is attractive to both newcomers and true professionals of the industry.</span> <br>
-                                            <a href="http://127.0.0.1:8000/blog/details/16" class="see_btn">Continue Reading</a>
+                                            <b style="margin-bottom:10px; display:inline-block;">{{ $blog->created_at->format('M d, Y') }}</b> <br>
+                                            <span style="color: #555555;">{{ Str::limit($blog->about_blog, 200, '.....') }}</span> <br>
+                                            <a href="{{ route('blog.details',$blog->id) }}" class="see_btn">Continue Reading</a>
                                         </div>
                                     </div>
                                 </div>

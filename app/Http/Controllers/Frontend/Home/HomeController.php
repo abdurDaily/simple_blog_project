@@ -35,14 +35,16 @@ class HomeController extends Controller
       $blog = Blog::with(['user', 'category'])
       ->where('active_status',1)->findOrFail($id);
 
+      $socialLink = Setting::select('id','social_name','social_link')->get();
       $categoryId = $blog->category_id; 
       $releventBlogs = Blog::where('category_id', $categoryId) 
           ->where('id', '!=', $id) 
-          ->latest('updated_at')->paginate(5);
+          ->latest('updated_at')->get();
+          // dd($releventBlogs);
       $latestPost = Blog::latest('updated_at')->paginate(4);
       $categorys = Category::where('category_status', 1)->withCount('blogs')->get();
       // dd($categorys);
-      return view('Frontend.Blog.Blog', compact('blog', 'categorys', 'releventBlogs','latestPost'));
+      return view('Frontend.Blog.Blog', compact('blog', 'categorys', 'releventBlogs','latestPost','socialLink'));
   }
     /**
      * ALL BLOG LIST 
@@ -77,7 +79,7 @@ class HomeController extends Controller
     public function allBlogsList(){
       $categorys = Category::where('category_status',1)->with('blogs')->withCount('blogs')->get();
       $socialLink = Setting::select('id','social_name','social_link')->get();
-      $allBlogList = Blog::where('active_status',1)->latest('updated_at')->paginate(3);
+      $allBlogList = Blog::where('active_status',1)->latest('updated_at')->paginate(10);
       return view('Frontend.Blog.AllBlogList',compact('allBlogList','socialLink','categorys'));
     }
 }

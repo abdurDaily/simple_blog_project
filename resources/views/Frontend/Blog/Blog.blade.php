@@ -77,7 +77,7 @@
     <div class="row" id="blog">
 
 
-        <div class="col-xl-8 blog_detail_fin">
+        <div class="col-xl-9 blog_detail_fin">
             {{-- <button class="copy-ql-code-button" data-clipboard-target=".ql-code-block-container">Copy Code</button>
             --}}
             <div>
@@ -123,18 +123,25 @@
         </div>
 
 
-        <div class="col-xl-4 about_author">
+        <div class="col-xl-3 about_author">
 
             <div class="row mb-5 px-3">
 
-                <div class="col-4">
+                <div class="">
                     <img class="img-fluid" src="{{ $blog->user->image }}" alt="">
+                    
+                    <h6 style="text-transform: capitalize;">{{ Str::limit($blog->user->name, 8, '....') }}</h6>
+                    <span>{!! Str::limit($blog->user->about_author, 100, '<b><a href="" style="color:#6A4EE9;">....see more</a></b>') !!}</span>
                 </div>
-                <div class="col-8">
-                    <h6 style="text-transform: capitalize;">{{ $blog->user->name }}</h6>
-                    <span>{!! Str::limit($blog->user->about_author, 100, '....see more') !!}</span>
-                </div>
-                <h6>Never miss a tutorial:</h6>
+                <h6>Follow Me on:</h6>
+                <ul id="social_link" class="m-0 ms-4  p-0 d-block " style="list-style-type: circle;">
+                    @forelse ($socialLink as $link)
+                    <li ><a target="_blank" href="{{ $link->social_link }}">{{ $link->social_name }}</a></li>
+                        
+                    @empty
+                    <li>No social link found</li>
+                    @endforelse
+                </ul>
             </div>
 
 
