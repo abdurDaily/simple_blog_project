@@ -7,6 +7,9 @@
     #wrapper{
       background: #fff; 
     }
+    body{
+      overflow-x: hidden;
+    }
     .menu-wrapper{
       box-shadow: 3px 3px 30px #e9d4d477;
       border: none  ;

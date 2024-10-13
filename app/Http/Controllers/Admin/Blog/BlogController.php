@@ -84,10 +84,11 @@ class BlogController extends Controller
       * UPDATE BLOG
       */
     public function updateBlog(Request $request, $id){
+        // dd($request->all());
         $request->validate([
             "blog_title" => 'required',
             "category_id" => 'required',
-            "blog_image" => 'required|mimes:png,jpg,webp,jpeg',
+            // "blog_image" => 'required|mimes:png,jpg,webp,jpeg',
             "about_blog" => 'required',
             "editor_content" => 'required',
           ]);

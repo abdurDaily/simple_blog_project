@@ -2,9 +2,23 @@
 @section('frontend_contains')
     @push('frontend_css')
         <style>
+            body {
+                background: #fff !important;
+            }
+            .all_category_btn:hover {
+                background: #6A4EE9;
+                color: #fff !important;
+            }
             @font-face {
                 font-family: 'helvetica';
                 src: url('{{ asset('assets/fonts/Helvetica-Bold.ttf') }}');
+            }
+            #social_link li a{
+                display: block !important;
+                width: 100% !important;
+                background: transparent ;
+                color: #6A4EE9 !important ;
+                text-align: left !important;
             }
             .paginate_style ul {
                 margin-top: 40px;
@@ -63,25 +77,66 @@
 
         </style>
     @endpush
-    <div class="grid-container paginate_style" style="margin-top: 100px;">
+    <div class="grid-container paginate_style" style="margin-top: 120px;">
         <div class="row g-3">
-            @forelse ($allBlogList as $blog)
-                <div class="col-xl-6" >
-                    <div class="shadow all_blog">
-                        <div class="row mx-0">
-                            <div class="col-lg-4 p-0">
-                                <img class="img-fluid h-100" style="object-fit: cover;" src="{{ $blog->feature_image }}" alt="">
-                            </div>
-                            <div class="col-lg-8 p-4">
-                                <span>{{ Str::limit($blog->about_blog, 80, '.....') }}</span> <br>
-                                <a href="{{ route('blog.details', $blog->id) }}" class="see_btn">See More</a>
+            <div class="col-xl-9">
+                @forelse ($allBlogList as $blog)
+                    <div class="col-xl-12" >
+                        <div class=" rounded all_blog mb-4">
+                            <div>
+                                <img class="me-3" style="object-fit: cover;float: left; height:100px; width:100px; " src="{{ $blog->feature_image }}" alt="">
+                                <h4 style="color:#555555 ;line-height: 30px;font-weight:bold;">{{ Str::limit($blog->blog_title, 60, '...') }}</h4>
+                                <b style="margin-bottom:10px; display:inline-block;">{{ $blog->created_at->format('F j, Y') }}</b> <br>
+                                <span style="color: #555555;">{{ Str::limit($blog->about_blog, 300, '.....') }}</span> <br>
+                                <a href="{{ route('blog.details', $blog->id) }}" class="see_btn">Continue Reading</a>
                             </div>
                         </div>
                     </div>
+                @empty
+                    <h4>No blog data hlw found..!</h4>
+                @endforelse
+
+            </div>
+
+            <div class="col-xl-3">
+                <div class="row mb-5 px-3">
+
+                    <div class="">
+                        <img class="img-fluid" src="{{ $blog->user->image }}" alt="">
+                        
+                        <h6 style="text-transform: capitalize;">{{ Str::limit($blog->user->name, 8, '....') }}</h6>
+                        <span>{!! Str::limit($blog->user->about_author, 100, '<b><a href="" style="color:#6A4EE9;">....see more</a></b>') !!}</span>
+                    </div>
+                    <h6>Follow Me on:</h6>
+                    <ul id="social_link" class="m-0 ms-4  p-0 d-block " style="list-style-type: circle;">
+                        @forelse ($socialLink as $link)
+                        <li ><a target="_blank" href="{{ $link->social_link }}">{{ $link->social_name }}</a></li>
+                            
+                        @empty
+                        <li>No social link found</li>
+                        @endforelse
+                    </ul>
                 </div>
-            @empty
-                <h4>No blog data hlw found..!</h4>
-            @endforelse
+
+
+                <h3 class="widget-title title medium bordered mt-5 p-0">
+                    All Category's Post
+                </h3>
+    
+    
+                @forelse ($categorys as $key => $category)
+                <a class="all_category_btn" href="{{ route('blog.all', $category->id) }}" style="
+                        display:inline-block;
+                        padding:2px 20px;
+                        border-radius:20px;
+                        color:#6A4EE9;
+                        border:1px solid #6A4EE9;
+                        ">{{ $category->category_name }}</a>
+                @empty
+                <h4>No category found!</h4>
+                @endforelse
+            </div>
+
 
             @if ($allBlogList->lastPage() > 1)
             <ul class="pagination">

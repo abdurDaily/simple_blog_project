@@ -1,5 +1,13 @@
 @extends('Frontend.Layouts')
 @section('frontend_contains')
+
+    @push('frontend_css')
+        <style>
+            .large-section {
+                margin-top: 50px;
+            }
+        </style>
+    @endpush
     <main id="home" class="main">
 
         <!-- BANNER  -->
@@ -41,176 +49,52 @@
         <div class="section section np-bottom">
             <section class="epcl-popular-categories" id="epcl-popular-categories-3">
                 <div class="grid-container grid-medium np-mobile">
-                    <h2 class="title bordered medium textcenter">
-                        <svg class="icon large secondary-color">
-                            <use xlink:href="#"></use>
-                        </svg>
-                        Trending Topics
-                    </h2>
-                    {{-- <div class="epcl-flex bg-box section">
-          <div class="left epcl-flex grid-60 np-mobile">
-            <div class="item grid-20 mobile-grid-33 overlay-effect">
-              <div class="image-container ctag-22">
-                <span class="category-image ctag ctag-22"
-                  ><img
-                    fetchpriority="low"
-                    decoding="async"
-                    loading="lazy"
-                    src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/uploads/2024/03/html-icon.png"
-                    alt="HTML"
-                    class="cover"
-                /></span>
-                <span class="epcl-decoration-counter">8</span>
-                <span class="overlay"></span>
-              </div>
-              <h3 class="title usmall">HTML</h3>
-              <a
-                href="https://themes.estudiopatagon.com/wordpress/zento/category/2-html/"
-                class="full-link"
-            ><span class="screen-reader-text"></span></a
-              >
-            </div>
-            <div class="item grid-20 mobile-grid-33 overlay-effect">
-              <div class="image-container ctag-21">
-                <span class="category-image ctag ctag-21"
-                  ><img
-                    fetchpriority="low"
-                    decoding="async"
-                    loading="lazy"
-                    src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/uploads/2024/03/code-icon.png"
-                    alt="Fundamentals"
-                    class="cover"
-                /></span>
-                <span class="epcl-decoration-counter">4</span>
-                <span class="overlay"></span>
-              </div>
-              <h3 class="title usmall">Fundamentals</h3>
-              <a
-                href="https://themes.estudiopatagon.com/wordpress/zento/category/1-fundamentals/"
-                class="full-link"
-            ><span class="screen-reader-text"></span></a
-              >
-            </div>
-            <div class="item grid-20 mobile-grid-33 overlay-effect">
-              <div class="image-container ctag-17">
-                <span class="category-image ctag ctag-17"
-                  ><img
-                    fetchpriority="low"
-                    decoding="async"
-                    loading="lazy"
-                    src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/uploads/2024/03/css-icon.png"
-                    alt="CSS"
-                    class="cover"
-                /></span>
-                <span class="epcl-decoration-counter">3</span>
-                <span class="overlay"></span>
-              </div>
-              <h3 class="title usmall">CSS</h3>
-              <a
-                href="https://themes.estudiopatagon.com/wordpress/zento/category/3-css/"
-                class="full-link"
-            ><span class="screen-reader-text"></span></a
-              >
-            </div>
-            <div class="item grid-20 mobile-grid-33 overlay-effect">
-              <div class="image-container ctag-24">
-                <span class="category-image ctag ctag-24"
-                  ><img
-                    fetchpriority="low"
-                    decoding="async"
-                    loading="lazy"
-                    src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/uploads/2024/03/databases-icon.png"
-                    alt="Databases"
-                    class="cover"
-                /></span>
-                <span class="epcl-decoration-counter">2</span>
-                <span class="overlay"></span>
-              </div>
-              <h3 class="title usmall">Databases</h3>
-              <a
-                href="https://themes.estudiopatagon.com/wordpress/zento/category/5-databases/"
-                class="full-link"
-            ><span class="screen-reader-text"></span></a
-              >
-            </div>
-            <div class="item grid-20 mobile-grid-33 overlay-effect">
-              <div class="image-container ctag-26">
-                <span class="category-image ctag ctag-26"
-                  ><img
-                    fetchpriority="low"
-                    decoding="async"
-                    loading="lazy"
-                    src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/uploads/2024/03/deploy-icon.png"
-                    alt="Deployment"
-                    class="cover"
-                /></span>
-                <span class="epcl-decoration-counter">2</span>
-                <span class="overlay"></span>
-              </div>
-              <h3 class="title usmall">Deployment</h3>
-              <a
-                href="https://themes.estudiopatagon.com/wordpress/zento/category/6-deployment/"
-                class="full-link"
-            ><span class="screen-reader-text"></span></a
-              >
-            </div>
-            <div class="item grid-20 mobile-grid-33 overlay-effect">
-              <div class="image-container ctag-1">
-                <span class="category-image ctag ctag-1"
-                  ><svg class="icon">
-                    <use
-                      xlink:href="https://themes.estudiopatagon.com/wordpress/zento/wp-content/themes/zento/assets/images/svg-icons.svg#fill-tag-icon"
-                    ></use></svg
-                ></span>
-                <span class="epcl-decoration-counter">1</span>
-                <span class="overlay"></span>
-              </div>
-              <h3 class="title usmall">Uncategorized</h3>
-              <a
-                href="https://themes.estudiopatagon.com/wordpress/zento/category/uncategorized/"
-                class="full-link"
-            ><span class="screen-reader-text"></span></a
-              >
-            </div>
-          </div>
-          <div class="right grid-40 hide-on-mobile hide-on-tablet">
-            <span class="fw-bold">or...</span>
-            <a
-              href="{{ route('blog.all.list') }}"
-              class="epcl-button"
-              >Explore All</a
-            >
-          </div>
-          <div class="clear"></div>
+                    
+
+
+
+                    <div class="section section np-bottom">
+                        <section class="epcl-popular-categories" id="epcl-popular-categories-3">
+                            <div class="grid-container grid-medium np-mobile">
+                                <h2 class="title bordered medium textcenter"><svg class="icon large secondary-color">
+                                        <use
+                                            xlink:href="https://themes.estudiopatagon.com/wordpress/zento/wp-content/themes/zento/assets/images/svg-icons.svg#trending-icon">
+                                        </use>
+                                    </svg> Trending Topics</h2>
+                                <div class="epcl-flex bg-box section">
+                                    <div class="left epcl-flex grid-60 np-mobile" >
+
+                                        @forelse ($categorys as $category)
+    <div class="item grid-20 mobile-grid-33 overlay-effect">
+        <div class="image-container ctag-22" > 
+            <span class="category-image ctag ctag-22">
+                <img fetchpriority="low" decoding="async" loading="lazy" src="{{ $category->category_img }}" alt="HTML" class="cover">
+            </span> 
+            <span class="epcl-decoration-counter">{{ $category->blogs_count }}</span> 
+            <span class="overlay"></span>
         </div>
-        --}}
+        <h3 class="title usmall">{{ $category->category_name }}</h3> 
+        <a href="" class="full-link">
+            <span class="screen-reader-text"></span>
+        </a>
+    </div>
+@empty
+    <span>No Category Found!</span>
+@endforelse
 
 
 
-                    <div class="container px-4 text-center">
-                        <div class="row gx-3 gy-3">
-                            @forelse ($categorys as $category)
-                                <div class="col-lg-4 ">
-                                    <div class="p-3  shadow" style="background: #fff;">
-                                        <a href="{{ route('blog.all', $category->id) }}"
-                                            style="display: block; height:100%; ">
-                                            <div class="image-container ctag-17">
-                                                <span class="category-image ctag ctag-17"><img fetchpriority="low"
-                                                        decoding="async" loading="lazy" style="object-fit: cover;"
-                                                        src="{{ $category->category_img }}" alt="CSS"
-                                                        class="cover" /></span>
-                                                {{-- <span class="epcl-decoration-counter">3</span>
-                    <span class="overlay"></span> --}}
-                                            </div>
-                                            <span>{{ $category->category_name }}</span>
-                                        </a>
+
+                                        
                                     </div>
+                                    <div class="right grid-40 hide-on-mobile hide-on-tablet"> <span
+                                            class="fw-bold">or...</span> <a
+                                            href="{{ route('blog.all.list') }}"
+                                            class="epcl-button">Explore All</a></div>
+                                    <div class="clear"></div>
                                 </div>
-                            @empty
-                                <span>No Category Found!</span>
-                            @endforelse
-
-                        </div>
+                            </div>
+                        </section>
                     </div>
 
 
@@ -356,7 +240,7 @@
                     <div class="epcl-pagination section np-bottom">
                         <div class="nav">
                             <span class="page-number">
-                                {{ $blogs->currentPage() }} of {{ $blogs->lastPage() }} </span>
+                                {{-- {{ $blogs->currentPage() }} of {{ $blogs->lastPage() }} </span> --}}
                             {{-- {{ $blogs->links() }} --}}
                             <a href="{{ route('blog.all.list') }}" class="epcl-button" data-title="Next">See All</a>
                         </div>
@@ -380,6 +264,6 @@
 
 
 
- 
+
 
 @endsection

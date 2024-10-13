@@ -144,7 +144,7 @@
                 </h3>
                 @forelse ($releventBlogs as $blog)
                 <div class=" d-flex border-bottom mb-3 pb-4">
-                    <img style="border-radius: 50%; width:70px; height:70px;" class="img-fluid"
+                    <img style="border-radius: 50%; width:70px; height:70px; object-fit:cover;" class="img-fluid"
                         src="{{ $blog->feature_image }}" alt="">
                     <div>
                         <a style="display: inline-block; padding-left:10px;"
@@ -191,7 +191,7 @@
             @forelse ($latestPost as $blog)
 
             <div class="col-xl-3 col-lg-4 col-md-6 ">
-                <div class="shadow foot-blog " style="height: 328px;">
+                <div class="border foot-blog " style="height: 328px;">
                     <div class="img" style="height: 200px;">
                         <img class="img-fluid" style="height:100%; width:100%; object-fit:cover;"
                             src="{{ $blog->feature_image }}" alt="">
@@ -210,7 +210,7 @@
             </div>
 
             @empty
-            <h4>No relevent data found!</h4>
+            <h4>No category found!</h4>
             @endforelse
         </div>
         <br>
