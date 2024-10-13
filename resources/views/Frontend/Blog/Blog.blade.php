@@ -163,16 +163,21 @@
             <h3 class="widget-title title medium bordered mt-5 p-0">
                 All Category's Post
             </h3>
-
-
             @forelse ($categorys as $key => $category)
+                
+
+            @if ($category->blogs_count > 0)
             <a class="all_category_btn" href="{{ route('blog.all', $category->id) }}" style="
-                    display:inline-block;
-                    padding:2px 20px;
-                    border-radius:20px;
-                    color:#6A4EE9;
-                    border:1px solid #6A4EE9;
-                    ">{{ $category->category_name }}</a>
+                display:inline-block;
+                padding:2px 20px;
+                margin:5px 5px 5px 0;
+                border-radius:20px;
+                color:#6A4EE9;
+                border:1px solid #6A4EE9;
+                ">{{ $category->category_name }}</a> 
+            @endif
+
+
             @empty
             <h4>No category found!</h4>
             @endforelse

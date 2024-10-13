@@ -6,6 +6,17 @@
             .large-section {
                 margin-top: 50px;
             }
+            .see_btn {
+                border: 1px solid #6A4EE9;
+                color: #6A4EE9;
+                display: inline-block;
+                padding: 10px 20px;
+                margin-top: 10px;
+            }
+            .see_btn:hover{
+                color: #fff;
+                background: #6A4EE9;
+            }
         </style>
     @endpush
     <main id="home" class="main">
@@ -65,22 +76,26 @@
                                     <div class="left epcl-flex grid-60 np-mobile" >
 
                                         @forelse ($categorys as $category)
-    <div class="item grid-20 mobile-grid-33 overlay-effect">
-        <div class="image-container ctag-22" > 
-            <span class="category-image ctag ctag-22">
-                <img fetchpriority="low" decoding="async" loading="lazy" src="{{ $category->category_img }}" alt="HTML" class="cover">
-            </span> 
-            <span class="epcl-decoration-counter">{{ $category->blogs_count }}</span> 
-            <span class="overlay"></span>
-        </div>
-        <h3 class="title usmall">{{ $category->category_name }}</h3> 
-        <a href="" class="full-link">
-            <span class="screen-reader-text"></span>
-        </a>
-    </div>
-@empty
-    <span>No Category Found!</span>
-@endforelse
+
+                                        @if ($category->blogs_count > 0)
+                                        <div class="item grid-20 mobile-grid-33 overlay-effect">
+                                            <div class="image-container ctag-22" > 
+                                                <span class="category-image ctag ctag-22">
+                                                    <img fetchpriority="low" decoding="async" loading="lazy" src="{{ $category->category_img }}" alt="HTML" class="cover">
+                                                </span> 
+                                                <span class="epcl-decoration-counter">{{ $category->blogs_count }}</span> 
+                                                <span class="overlay"></span>
+                                            </div>
+                                            <h3 class="title usmall">{{ Str::limit($category->category_name, 6, '...') }}</h3> 
+                                            <a href="{{ route('blog.all', $category->id) }}" class="full-link">
+                                                <span class="screen-reader-text"></span>
+                                            </a>
+                                        </div>  
+                                        @endif
+                                            
+                                        @empty
+                                            <span>No Category Found!</span>
+                                        @endforelse
 
 
 
@@ -138,7 +153,7 @@
                                                 fill="currentColor"></path>
                                         </svg></span>
                                     <ul class="post-list" style="display:none">
-                                        @forelse ($category->blogs as $data=> $list)
+                                        @forelse ($category->blogs->take(5) as $data=> $list)
                                             <li>
                                                 <span class="fw-semibold">{{ ++$data }} .</span>
                                                 <a href="{{ route('blog.details', $list->id) }}"
@@ -173,60 +188,17 @@
                         @forelse ($blogs as $blog)
                             <article
                                 class="default classic-large bg-box epcl-flex index-2 post-style-small-image odd primary-cat-23 post-9 post type-post status-publish format-standard has-post-thumbnail hentry category-code category-2-html category-4-javascript">
-                                <div class="meta meta-data">
-                                    <div class="tags fill-color">
-                                        <a href="https://themes.estudiopatagon.com/wordpress/zento/category/4-javascript/"
-                                            class="primary-tag tag-link-23">{{ $blog->category->category_name }} </a>
-                                    </div>
-                                    <time class="meta-info" datetime="2024-01-18">
-                                        <span><i class="fa-solid fa-arrow-right"></i></span>
-                                        {{ $blog->created_at->format('d-M-Y') }}
-                                    </time>
-                                    <div class="min-read meta-info">
-                                        <span><i class="fa-solid fa-arrow-right"></i></span>
-                                        {{ $blog->created_at->diffForHumans() }}
-                                    </div>
-
-
-                                    <div class="min-read meta-info">
-                                        <span><i class="fa-solid fa-arrow-right"></i></span>
-                                        {{ $blog->user->name }}
-                                    </div>
-                                </div>
-                                <div class="info">
-                                    <header>
-                                        <h2 class="main-title title underline-effect">
-                                            <a
-                                                href="{{ route('blog.details', $blog->id) }}">{{ Str::limit($blog->blog_title, 50, '...') }}</a>
-                                        </h2>
-                                    </header>
-                                    <div class="post-excerpt">
-                                        <div class="clear"></div>
-                                        <p>
-                                            {!! Str::limit($blog->blog_details, 100, '......') !!}
-                                        </p>
-                                    </div>
-                                    <footer class="bottom">
-
-                                        <div class="meta inline hide-on-tablet hide-on-desktop">
-                                            <a href="https://themes.estudiopatagon.com/wordpress/zento/author/admin/"
-                                                class="author">
-                                                <img class="author-image cover" loading="lazy" fetchpriority="low"
-                                                    decoding="async"
-                                                    src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/uploads/2024/03/avatar-1-1.webp"
-                                                    alt="Jonathan Doe" />
-                                                <span class="author-name">Jonathan Doe</span>
-                                            </a>
-                                            <div class="min-read meta-info">
-                                                <svg class="icon main-color">
-                                                    <use
-                                                        xlink:href="https://themes.estudiopatagon.com/wordpress/zento/wp-content/themes/zento/assets/images/svg-icons.svg#reading-icon">
-                                                    </use>
-                                                </svg>
-                                                1 Min Read
-                                            </div>
+                                
+                                <div class="col-xl-12 p-3 pb-0">
+                                    <div class=" rounded all_blog mb-4">
+                                        <div>
+                                            <img class="me-3" style="object-fit: cover;float: left; height:100px; width:100px; " src="http://127.0.0.1:8000/storage/blog/blog-1728754711.jpg" alt="">
+                                            <h4 style="color:#555555 ;line-height: 30px;font-weight:bold;">{{ Str::limit($blog->blog_title, 100, '.....') }}</h4>
+                                            <b style="margin-bottom:10px; display:inline-block;">{{ $blog->created_at }}</b> <br>
+                                            <span style="color: #555555;">There is probably no IT expert who has not dealt with the DEV community, dedicated to many fields of programming and development. The platform is attractive to both newcomers and true professionals of the industry.</span> <br>
+                                            <a href="http://127.0.0.1:8000/blog/details/16" class="see_btn">Continue Reading</a>
                                         </div>
-                                    </footer>
+                                    </div>
                                 </div>
                             </article>
 

@@ -17,15 +17,16 @@ class HomeController extends Controller
     $blogs = Blog::with('category', 'user')
         ->where('active_status', 1)
         ->latest()
-        ->get();
+        ->paginate(5);
 
-    $categoryCounts = $blogs->groupBy('category_id')->map->count();
+    // $categoryCounts = $blogs->groupBy('category_id')->map->count();
 
-    $categorys = Category::where('category_status', 1)->withCount('blogs')->paginate(6);
+    $categorys = Category::where('category_status', 1)
+       ->withCount('blogs')->latest()->get();
 
     $userProfile = User::where('author_active_status', 1)->first();
 
-    return view('index', compact('blogs', 'userProfile', 'categorys', 'categoryCounts'));
+    return view('index', compact('blogs', 'userProfile', 'categorys'));
 }
     /** 
      * BLOG DETAILS
@@ -39,14 +40,20 @@ class HomeController extends Controller
           ->where('id', '!=', $id) 
           ->latest('updated_at')->paginate(5);
       $latestPost = Blog::latest('updated_at')->paginate(4);
-      $categorys = Category::where('category_status', 1)->get();
+      $categorys = Category::where('category_status', 1)->withCount('blogs')->get();
+      // dd($categorys);
       return view('Frontend.Blog.Blog', compact('blog', 'categorys', 'releventBlogs','latestPost'));
   }
     /**
      * ALL BLOG LIST 
      */
     public function allBlogs($id){
-      $categorys = Category::where('category_status',1)->with('blogs')->get();
+      $blogs = Blog::with('category', 'user')
+        ->where('active_status', 1)
+        ->latest()
+        ->paginate(5);
+      $categorys = Category::where('category_status',1)->with('blogs')->withCount('blogs')->get();
+      // dd($categorys);
       $socialLink = Setting::select('id','social_name','social_link')->get();
       $allBlogList = Blog::where('category_id',$id)->where('active_status',1)->latest('updated_at')->paginate(10);
       return view('Frontend.Blog.AllBlog',compact('allBlogList','socialLink','categorys'));
@@ -68,7 +75,7 @@ class HomeController extends Controller
      * ALL BLOG LIST 
      */
     public function allBlogsList(){
-      $categorys = Category::where('category_status',1)->with('blogs')->get();
+      $categorys = Category::where('category_status',1)->with('blogs')->withCount('blogs')->get();
       $socialLink = Setting::select('id','social_name','social_link')->get();
       $allBlogList = Blog::where('active_status',1)->latest('updated_at')->paginate(3);
       return view('Frontend.Blog.AllBlogList',compact('allBlogList','socialLink','categorys'));
