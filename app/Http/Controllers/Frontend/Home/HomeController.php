@@ -84,4 +84,11 @@ class HomeController extends Controller
       $allBlogList = Blog::where('active_status',1)->latest('updated_at')->paginate(10);
       return view('Frontend.Blog.AllBlogList',compact('allBlogList','socialLink','categorys','userProfile'));
     }
+
+    /**EXPLORE CATEGORY */
+    public function categorysIndex(){
+      $categorys = Category::where('category_status',1)->with('blogs')->withCount('blogs')->get();
+      return view('Frontend.Category.Category', compact('categorys'));
+      dd($categorys);
+    }
 }

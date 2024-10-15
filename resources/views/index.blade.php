@@ -104,7 +104,7 @@
                                     </div>
                                     <div class="right grid-40 hide-on-mobile hide-on-tablet"> <span
                                             class="fw-bold">or...</span> <a
-                                            href="{{ route('blog.all.list') }}"
+                                            href="{{ route('blog.category') }}"
                                             class="epcl-button">Explore All</a></div>
                                     <div class="clear"></div>
                                 </div>
@@ -229,6 +229,9 @@
         <!-- Topics Index -->
 
     </main>
+
+
+    
 
 
 

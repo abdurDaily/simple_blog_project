@@ -19,6 +19,7 @@ Route::prefix('/blog')->name('blog.')->group(function () {
     Route::get('/blogs', [HomeController::class, 'allBlogsList'])->name('all.list');
     Route::get('/all-blogs/{id}', [HomeController::class, 'allBlogs'])->name('all');
     Route::get('/search-blog', [HomeController::class, 'searchBlog'])->name('search');
+    Route::get('/all-categorys', [HomeController::class, 'categorysIndex'])->name('category');
 });
 
 
