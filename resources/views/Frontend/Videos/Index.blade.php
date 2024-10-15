@@ -18,7 +18,7 @@
 @endpush
 
 @section('frontend_contains')
-    <div class="grid-container my-5">
+    <div style="margin-top: 100px !important" class="grid-container my-5">
         <div class="row">
             
             @forelse ($allVideos as $video)

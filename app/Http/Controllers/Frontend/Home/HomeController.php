@@ -53,33 +53,35 @@ class HomeController extends Controller
       $blogs = Blog::with('category', 'user')
         ->where('active_status', 1)
         ->latest()
-        ->paginate(5);
+        ->get();
+        $userProfile = User::where('author_active_status', 1)->first(); 
       $categorys = Category::where('category_status',1)->with('blogs')->withCount('blogs')->get();
-      // dd($categorys);
       $socialLink = Setting::select('id','social_name','social_link')->get();
       $allBlogList = Blog::where('category_id',$id)->where('active_status',1)->latest('updated_at')->paginate(10);
-      return view('Frontend.Blog.AllBlog',compact('allBlogList','socialLink','categorys'));
+      return view('Frontend.Blog.AllBlog',compact('blogs','allBlogList','socialLink','categorys','userProfile'));
     } 
     /**
      * SEARCH BLOG 
      */
     public function searchBlog(Request $request){
+      $userProfile = User::where('author_active_status', 1)->first();
       $allBlogList = Blog::where('active_status',1)->latest('updated_at')->paginate(3);
-      $categorys = Category::where('category_status',1)->with('blogs')->get();
+      $categorys = Category::where('category_status',1)->with('blogs')->withCount('blogs')->get();
       $socialLink = Setting::select('id','social_name','social_link')->get();
       $allBlogList = Blog::where('active_status',1)->where('blog_title', 'like' , '%' . $request->search_blog . '%')
                      ->orWhere('about_blog', 'like', '%' . $request->search_blog .'%')
                        ->paginate(10);
                         //  dd($allBlogList);
-      return view('Frontend.Blog.SearchBlog', compact('allBlogList','allBlogList','socialLink','categorys'));
+      return view('Frontend.Blog.SearchBlog', compact('allBlogList','allBlogList','socialLink','categorys','userProfile'));
     } 
     /**
      * ALL BLOG LIST 
      */
     public function allBlogsList(){
+      $userProfile = User::where('author_active_status', 1)->first(); 
       $categorys = Category::where('category_status',1)->with('blogs')->withCount('blogs')->get();
       $socialLink = Setting::select('id','social_name','social_link')->get();
       $allBlogList = Blog::where('active_status',1)->latest('updated_at')->paginate(10);
-      return view('Frontend.Blog.AllBlogList',compact('allBlogList','socialLink','categorys'));
+      return view('Frontend.Blog.AllBlogList',compact('allBlogList','socialLink','categorys','userProfile'));
     }
 }

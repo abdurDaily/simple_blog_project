@@ -187,12 +187,12 @@
 
                         @forelse ($blogs as $blog)
                             <article
-                                class="default classic-large bg-box epcl-flex index-2 post-style-small-image odd primary-cat-23 post-9 post type-post status-publish format-standard has-post-thumbnail hentry category-code category-2-html category-4-javascript">
+                                class="p-0 border-0 shadow-sm default classic-large bg-box epcl-flex index-2 post-style-small-image odd primary-cat-23 post-9 post type-post status-publish format-standard has-post-thumbnail hentry category-code category-2-html category-4-javascript">
                                 
-                                <div class="col-xl-12 p-3 pb-0">
+                                <div class="col-xl-12 p-3">
                                     <div class=" rounded all_blog mb-4">
                                         <div>
-                                            <img class="me-3" style="object-fit: cover;float: left; height:100px; width:100px; " src="http://127.0.0.1:8000/storage/blog/blog-1728754711.jpg" alt="">
+                                            <img class="me-3" style="object-fit: cover;float: left; height:100px; width:100px; " src="{{ $blog->feature_image }}" alt="">
                                             <h4 style="color:#555555 ;line-height: 30px;font-weight:bold;">{{ Str::limit($blog->blog_title, 100, '.....') }}</h4>
                                             <b style="margin-bottom:10px; display:inline-block;">{{ $blog->created_at->format('M d, Y') }}</b> <br>
                                             <span style="color: #555555;">{{ Str::limit($blog->about_blog, 200, '.....') }}</span> <br>

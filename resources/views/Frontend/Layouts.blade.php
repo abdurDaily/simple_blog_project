@@ -990,6 +990,13 @@
           </svg>
         </span>
         <div class="clear"></div>
+
+
+        <div class="container">
+           <div class="text-center py-3">
+            <span> &copy; Developed by: <a target="_blank" style="color: #6A4EE9" href="https://www.linkedin.com/in/abdurdaily/"> <b>abdurDaily</b> </a> </span>
+           </div>
+        </div>
       </footer>
 
 
@@ -1058,22 +1065,7 @@
       defer
       src="{{ asset('frontend/assets/js/scripts.min.js') }}"
     ></script>
-    {{-- <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js?ver=1.3.0"
-      id="prismjs-core-js"
-    ></script> --}}
-    {{-- <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js?ver=1.3.0"
-      id="prismjs-autoloader-js"
-    ></script> --}}
-    {{-- <script
-      defer
-      src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/themes/zento/assets/dist/prism-plugins.min.js?ver=1.3.0"
-      id="prismjs-plugins-js"
-    ></script> --}}
-
+    
     
     
     <script>

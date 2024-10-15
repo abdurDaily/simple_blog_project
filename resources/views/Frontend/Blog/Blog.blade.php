@@ -229,7 +229,7 @@
 
         <h6 style="text-align: center; margin-top:40px;"><a href="{{ route('blog.all.list') }}"
                 style="display: inline-block; padding:5px 50px; border:1px solid #6A4EE9;color:#6A4EE9; ">{{
-                count($latestPost) > 1 ? "see all" : '...' }}</a></h6>
+                count($latestPost) > 1 ? "see all" : 'see all' }}</a></h6>
 
 
     </div>
