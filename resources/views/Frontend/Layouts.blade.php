@@ -3,6 +3,13 @@
   <head>
 
     <style>
+
+      @media (max-width: 576px) { 
+        .open-menu span{
+          display: inline-block;
+          margin-top: 10px;
+        }
+      }
       
     #wrapper{
       background: #fff; 
@@ -622,11 +629,11 @@
           >
         </li>
       </ul>
-      <div class="epcl-buttons">
+      {{-- <div class="epcl-buttons">
         <a href="{{ route('login') }}" class="epcl-button subscribe-button" >
           Login
         </a>
-      </div>
+      </div> --}}
     </nav>
     <div class="menu-overlay"></div>
     <div id="wrapper">
@@ -667,16 +674,16 @@
               <div
                 class="account underline-effect hide-on-mobile hide-on-tablet hide-on-desktop-sm"
               >
-                <a
+                {{-- <a
                   href="{{ route('login') }}"
                   class="epcl-button subscribe-button hide-on-mobile hide-on-tablet hide-on-desktop-sm"
                   
                 >
                   Login
-                </a>
+                </a> --}}
               </div>
               <div class="open-menu">
-                <span style="font-size: 20px">
+                <span style="font-size: 20px; ">
                   <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
                     <rect width="24" height="24" fill="none" />
                     <g fill="none" fill-rule="evenodd">

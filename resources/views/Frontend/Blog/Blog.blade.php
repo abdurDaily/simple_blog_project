@@ -73,7 +73,7 @@
 
 
 @section('frontend_contains')
-<div class="grid-container blog_details" style="margin-top: 120px; overflow-x: hidden;">
+<div class="grid-container blog_details" style="margin-top: 80px; overflow-x: hidden;">
     <div class="row" id="blog">
 
 
