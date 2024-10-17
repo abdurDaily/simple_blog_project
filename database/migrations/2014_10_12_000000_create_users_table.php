@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('about_author')->default('<p>I’m a&nbsp;<strong>design technologist</strong>&nbsp;in Atlanta. I like working on the front-end of the web. This is my site,&nbsp;<strong>Zento</strong>&nbsp;where I blog, share and write tutorials…</p>');
+            $table->string('designation');
+            $table->string('cv')->nullable();
+            $table->longText('about_author');
             $table->string('image')->nullable();
             $table->boolean('author_active_status')->default(0);
             $table->boolean('status')->default(0);

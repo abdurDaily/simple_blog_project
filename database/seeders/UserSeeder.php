@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
         $userData = [
             [
                 'name' => 'abdur',
+                'designation' => 'Data Scientist',
                 'email' => 'abdur@gmail.com',
                 'author_active_status' => 1,
                 'password' => 'password',
@@ -40,7 +41,8 @@ class UserSeeder extends Seeder
 
         foreach ($userData as $data) {
             $user = new User();
-            $user->name = $data['name'];
+            $user->name = $data['name'];    
+            $user->designation = isset($data['designation']) ? $data['designation'] : '' ;
             $user->about_author = isset($data['about_author']) ? $data['about_author'] : '' ;
             $user->author_active_status = isset($data['author_active_status']) ? $data['author_active_status'] : 0;
             $user->email = $data['email'];

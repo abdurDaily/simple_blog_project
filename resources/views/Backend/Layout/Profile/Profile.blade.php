@@ -1,6 +1,13 @@
 @extends('Backend.Layout.Layout')
 @section('backend_contains')
 
+@push('backend_css')
+  <style>
+    .ck.ck-editor__main>.ck-editor__editable{
+      min-height: 200px;
+    }
+  </style>
+@endpush
 
 
     <div class="d-flex justify-content-between py-3">
@@ -59,7 +66,7 @@
                 {{-- ABOUT AUTHOR --}}
                 <div class="input-style-1">
                   <label for="about_author">About Author</label>
-                  <textarea id="about_author" name="about_author" placeholder="about author"></textarea>    
+                  <textarea rows="30" id="about_author" name="about_author" placeholder="about author"></textarea>    
                 </div>
 
 

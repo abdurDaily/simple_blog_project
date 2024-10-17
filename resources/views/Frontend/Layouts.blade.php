@@ -620,6 +620,17 @@
           >
         </li>
 
+
+
+        <li
+          id="menu-item-1172"
+          class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1172"
+        >
+          <a href="{{ route('about.index') }}"
+            >About Me</a
+          >
+        </li>
+
         <li
           id="menu-item-1172"
           class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1172"

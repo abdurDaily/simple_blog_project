@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Video\VideoController;
+use App\Http\Controllers\Frontend\About\AboutController;
 use App\Http\Controllers\Frontend\Home\HomeController;
 use App\Http\Controllers\Frontend\Setting\SettingController;
 use App\Http\Controllers\Frontend\Video\VideoController as VideoVideoController;
@@ -29,6 +30,16 @@ Route::prefix('/blog')->name('blog.')->group(function () {
 Route::prefix('/video')->name('video.')->group(function () {
     Route::get('/all', [VideoVideoController::class, 'videoFetch'])->name('fetch');
 });
+
+
+/**
+  * ABOUT
+ */
+Route::prefix('/about')->name('about.')->group(function () {
+    Route::get('/index', [AboutController::class, 'aboutIndex'])->name('index');
+});
+
+
 
 
 // Route::any('/{any}', function(){
