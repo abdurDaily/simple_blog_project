@@ -4,7 +4,7 @@
     <style>
       
         #about_parent {
-            margin-top: 150px;
+            margin-top: 110px;
             padding: 0 30px;
         }
         #about_parent .about-box h1{

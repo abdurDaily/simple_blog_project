@@ -131,7 +131,7 @@
                     <img class="img-fluid" src="{{ $blog->user->image }}" alt="">
                     
                     <h6 style="text-transform: capitalize;">{{ Str::limit($blog->user->name, 8, '....') }}</h6>
-                    <span>{!! Str::limit($blog->user->about_author, 100, '<b><a href="" style="color:#6A4EE9;">....see more</a></b>') !!}</span>
+                    <span>{!! Str::limit($userProfile->about_author, 100, '<b><a href="' . route('about.index') . '" style="color:#6A4EE9;">....see more</a></b>') !!}</span>
                 </div>
                 <h6>Follow Me on:</h6>
                 <ul id="social_link" class="m-0 ms-4  p-0 d-block " style="list-style-type: circle;">
