@@ -26,10 +26,12 @@ class ProfileController extends Controller
     {
         $db_user = User::find(auth()->user()->id);
         $db_user->name = $request->user_name;
+        $db_user->designation = $request->designation;
         $db_user->email = $request->user_email;
-        if($request->hasFile('about_author')){
-            $db_user->about_author = $request->about_author;
-        }
+        $db_user->about_author = $request->about_author;
+        // if($request->hasFile('about_author')){
+        //     $db_user->about_author = $request->about_author;
+        // }
 
         if($request->hasFile('author_image')){
             $author_image = $request->author_image->extension();

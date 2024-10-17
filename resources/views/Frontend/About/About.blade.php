@@ -57,22 +57,26 @@
         </div>
 
 
-        <div class="row mt-5">
+        <div class="row mt-5 justify-content-between">
             <div class="col-xl-5">
                 <img class="img-fluid blob" src="{{ $about_user->image }}" alt="">
             </div>
-            <div class="col-xl-7">
+            <div class="col-xl-6">
                 <h2 style="text-transform:capitalize;">{{ Str::limit($about_user->name, 30, '...') }}</h2>
-                <span>Data Scientist</span>
+                <span>{{ $about_user->designation }}</span>
                 <p style="padding-top:20px;">{!! $about_user->about_author !!}</p>
 
                 <h5 style="margin-top: 20px;">Social Link's</h5>
                 <ul style="padding-left: 15px">
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Facebook</a></li>
+                    @forelse ($socialLink as $link)
+                    <li><a href="{{ $link->social_link }}">{{ $link->social_name }}</a></li>
+                        
+                    @empty
+                        <li>no data found!</li>
+                    @endforelse
                 </ul>
 
-                <a style="display: inline-block; padding: 10px 30px; background:#EBCD0E; margin-top:20px;" href="">Download Cv</a>
+                {{-- <a style="display: inline-block; padding: 10px 30px; background:#EBCD0E; margin-top:20px;" href="">Download Cv</a> --}}
             </div>
         </div>
     </div>

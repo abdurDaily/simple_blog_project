@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('designation');
-            $table->string('cv')->nullable();
+            // $table->string('cv')->nullable();
             $table->longText('about_author');
             $table->string('image')->nullable();
             $table->boolean('author_active_status')->default(0);

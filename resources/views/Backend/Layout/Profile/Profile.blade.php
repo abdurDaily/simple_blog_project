@@ -42,6 +42,11 @@
 
                 
                 <div class="input-style-1">
+                  <label>designation</label>
+                  <input type="text" name="designation" placeholder="your designation" value="{{ Auth::user()->designation }}">
+                </div>
+                
+                <div class="input-style-1">
                   <label>Email</label>
                   <input type="email" name="user_email" placeholder="Full Name" value="{{ Auth::user()->email }}">
                 </div>
@@ -66,7 +71,7 @@
                 {{-- ABOUT AUTHOR --}}
                 <div class="input-style-1">
                   <label for="about_author">About Author</label>
-                  <textarea rows="30" id="about_author" name="about_author" placeholder="about author"></textarea>    
+                  <textarea rows="30" id="about_author" name="about_author" placeholder="about author">{{ Auth::user()->about_author }}</textarea>    
                 </div>
 
 
