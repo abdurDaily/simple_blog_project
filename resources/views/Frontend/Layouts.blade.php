@@ -10,6 +10,14 @@
           margin-top: 10px;
         }
       }
+
+
+      @media (max-width: 767px) { 
+          .grid-container {
+              padding-left: 0px !important;
+              padding-right: 0px !important;
+          }
+      }
       
     #wrapper{
       background: #fff; 

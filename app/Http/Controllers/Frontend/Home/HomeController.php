@@ -40,11 +40,12 @@ class HomeController extends Controller
       $releventBlogs = Blog::where('category_id', $categoryId) 
           ->where('id', '!=', $id) 
           ->latest('updated_at')->get();
+          $userProfile = User::where('author_active_status', 1)->first(); 
           // dd($releventBlogs);
       $latestPost = Blog::latest('updated_at')->paginate(4);
       $categorys = Category::where('category_status', 1)->withCount('blogs')->get();
       // dd($categorys);
-      return view('Frontend.Blog.Blog', compact('blog', 'categorys', 'releventBlogs','latestPost','socialLink'));
+      return view('Frontend.Blog.Blog', compact('blog', 'categorys', 'releventBlogs','latestPost','socialLink','userProfile'));
   }
     /**
      * ALL BLOG LIST 

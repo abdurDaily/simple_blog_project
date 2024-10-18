@@ -3,9 +3,19 @@
 
     @push('frontend_css')
         <style>
+            @media (max-width: 767px) { 
+                .index_image{
+                width: 85% !important;
+                margin:0; 
+                padding:0 0 20px 0
+               }
+            
+            }
+           
             .large-section {
                 margin-top: 50px;
             }
+
             .see_btn {
                 border: 1px solid #6A4EE9;
                 color: #6A4EE9;
@@ -49,7 +59,7 @@
         </div> --}}
                 </form>
             </div>
-            <div class="right grid-45 tablet-grid-45 mobile-grid-60">
+            <div class="right grid-45 tablet-grid-45 mobile-grid-60 index_image" >
                 <img src="{{ $userProfile->image }}" fetchpriority="high" decoding="async" alt=""
                     class="hero-image fullwidth" width="442" height="442" />
             </div>
