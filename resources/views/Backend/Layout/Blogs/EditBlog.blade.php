@@ -83,7 +83,9 @@
 <div id="editor" >
 </div>
 
-
+<textarea style="display: none" id="editorContent">
+  {{ $editBlog->editor_content }}
+</textarea>
 
 <div class="form-elements-wrapper">
     <div class="row">
@@ -189,7 +191,11 @@
   });
 
   // Set the content of the Quill editor
-  quill.root.innerHTML = `{!! $editBlog->editor_content ?? '' !!}`;
+  quill.root.innerHTML = document.querySelector('#editorContent').value ?? ''
+  
+  
+  
+  
 
   const form = document.querySelector('form');
 

@@ -60,7 +60,8 @@
         background: #211D3F;
         color: #fff;
         padding: 10px 20px;
-        height: 400px;
+        height: auto;
+        max-height: 400px;
         overflow-y: scroll;
         margin: 20px 0;
     }

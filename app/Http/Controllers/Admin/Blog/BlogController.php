@@ -75,6 +75,7 @@ class BlogController extends Controller
      */
      public function editBlog($id){
        $editBlog =  Blog::with('user')->find($id);
+       
        $categorys = Category::select('id','category_name')->get();
        return view('Backend.Layout.Blogs.EditBlog', compact('editBlog','categorys'));
      }
