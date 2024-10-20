@@ -1,7 +1,8 @@
 @extends('Backend.Layout.Layout')
 @section('backend_contains')
 
-<div class="row">
+
+<div class="row px-3">
     <div class=" col-lg-4 col-sm-6">
       <div class="icon-card mb-30">
         <div class="icon purple">

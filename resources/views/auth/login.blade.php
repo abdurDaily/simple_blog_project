@@ -23,14 +23,14 @@
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
     @stack('backend_css')
   </head>
-  <body>
+  <body style="background: #F1F5F9;">
 
 
     <section class="d-flex align-items-center" style="height: 100vh;">
-      <div class="container"> 
+      <div class="container p-0 "> 
 
         <!-- end col -->
-        <div class="col-lg-6 mx-auto">
+        <div class="col-lg-6 mx-auto ">
           <div class="signin-wrapper">
             <div class="form-wrapper">
               <h6 class="mb-15">Sign In Form</h6>

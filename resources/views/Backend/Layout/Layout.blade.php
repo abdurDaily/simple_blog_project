@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/fullcalendar.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
     @stack('backend_css')
+
   </head>
   <body>
     <!-- ======== Preloader =========== -->
@@ -290,7 +291,7 @@
 
       <!-- ========== section start ========== -->
       <section class="section mt-5 backendContains">
-        <div class="container">
+        <div class="container px-2 overflow-x-hidden  ">
           @yield('backend_contains')
         </div>
         <!-- end container -->

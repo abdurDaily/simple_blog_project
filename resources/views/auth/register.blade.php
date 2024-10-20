@@ -22,11 +22,11 @@
   </head>
   <body>
 
-    <section class="d-flex align-items-center" style="height: 100vh;">
-    <div class="container">
+    <section>
+    <div class="container p-0" style="overflow-x: hidden">
       <div class="row ">
           <!-- end col -->
-          <div class="col-lg-6 mx-auto">
+          <div class="col-lg-6 mx-auto ">
             <div class="signin-wrapper">
               <div class="form-wrapper">
                 <h6 class="mb-15">Sign In Form</h6>

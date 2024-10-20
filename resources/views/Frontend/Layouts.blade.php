@@ -811,17 +811,17 @@
             </section>
             <section
               id="nav_menu-2"
-              class="widget widget_nav_menu grid-30 tablet-grid-50 mobile-grid-100"
+              class="px-3 widget widget_nav_menu grid-30 tablet-grid-50 mobile-grid-100"
             >
               <h3 class="widget-title title medium bordered">
                 <svg class="decoration">
                   <use
-                    xlink:href="https://themes.estudiopatagon.com/wordpress/zento/wp-content/themes/zento/assets/images/svg-icons.svg#title-decoration"
+                    xlink:href=""
                   ></use></svg
                 >Quick Links
               </h3>
-              <div class="menu-quick-links-container">
-                <ul id="menu-quick-links" class="menu">
+              <div class="menu-quick-links-container ">
+                <ul id="menu-quick-links" class="menu ">
                   
                  
                   <li
@@ -904,15 +904,13 @@
           </div>
           <div class="clear"></div>
           <div class="mobile-sidebar hide-on-desktop">
-            <section id="nav_menu-3" class="widget widget_nav_menu grid-30">
+
+            
+            <section id="nav_menu-3" class="px-3 widget widget_nav_menu grid-30">
               <h3 class="widget-title title medium bordered">
-                <svg class="decoration">
-                  <use
-                    xlink:href="https://themes.estudiopatagon.com/wordpress/zento/wp-content/themes/zento/assets/images/svg-icons.svg#title-decoration"
-                  ></use></svg
-                >Quick Links
+                Quick Links 
               </h3>
-              <div class="menu-quick-links-container">
+              <div class="menu-quick-links-container px-2">
                 <ul id="menu-quick-links-1" class="menu">
                   
                   
@@ -943,16 +941,18 @@
               </div>
               <div class="clear"></div>
             </section>
+
+
             <section
               id="epcl_subscribe_form-3"
-              class="widget widget_epcl_subscribe_form grid-30"
+              class="widget px-3 widget_epcl_subscribe_form grid-30"
             >
               <div class="widget_text">
                 <div class="textwidget">
                   <p>
                     <img
                       class="alignnone size-full wp-image-59"
-                      src="https://themes.estudiopatagon.com/wordpress/zento/wp-content/uploads/2024/03/logo-zento-1.png"
+                      src="{{ $logo ? $logo->logo : 'https://citictgms.com/logo.png'  }}"
                       alt=""
                       width="170"
                     />
@@ -963,23 +963,25 @@
                   </p>
                 </div>
                 <br />
-                <form
-                  class="subscribe-form"
-                  action="#"
-                  method="POST"
-                  target="_blank"
-                >
+                
+
+              
                   <label class="title small" for="email-epcl_subscribe_form-3"
                     >Let's connect</label
                   >
-                  <div class="form-group">
-                     <form action="">
+                  <div class="form-group ">
+                    <form
+                    class="subscribe-form"
+                    action="{{ route('message.store.message') }}"
+                    method="POST"
+                  >
+                  @csrf
                         
 
                       <input
                       type="email"
                       id="email-epcl_subscribe_form-3"
-                      name="MERGE0"
+                      name="subscribe"
                       class="inputbox large"
                       required
                       placeholder="Enter your email address"
@@ -990,6 +992,10 @@
 
                      </form>
                   </div>
+                  @if (Session::has('success'))
+                  <a id="flash-message-anchor"></a>
+                  <div class="alert alert-success">{{ Session::get('success') }}</div>
+                  @endif
                 </form>
                 <div class="clear"></div>
               </div>

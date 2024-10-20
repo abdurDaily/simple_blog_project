@@ -96,7 +96,7 @@ prefix('admin/setting/')->name('setting.')->group(function () {
 /**
  * MESSAGE    
  */
-Route::middleware('admin')->
+Route::
 prefix('admin/message/')->name('message.')->group(function () {
     Route::get('/index', [MessageController::class, 'messageIndex'])->name('index');
     Route::post('/index', [MessageController::class, 'storeMessage'])->name('store.message');

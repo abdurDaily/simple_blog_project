@@ -197,9 +197,10 @@
 
                         @forelse ($blogs as $blog)
                             <article
-                                class="p-0 border-0 shadow-sm default classic-large bg-box epcl-flex index-2 post-style-small-image odd primary-cat-23 post-9 post type-post status-publish format-standard has-post-thumbnail hentry category-code category-2-html category-4-javascript">
+                             
+                                class="px-2 py-2 border-0 shadow-sm default classic-large bg-box epcl-flex index-2 post-style-small-image odd primary-cat-23 post-9 post type-post status-publish format-standard has-post-thumbnail hentry category-code category-2-html category-4-javascript">
                                 
-                                <div class="col-xl-12 p-3">
+                                <div class="col-xl-12 p-0">
                                     <div class=" rounded all_blog mb-4">
                                         <div>
                                             <img class="me-3" style="object-fit: cover;float: left; height:100px; width:100px; " src="{{ $blog->feature_image }}" alt="">

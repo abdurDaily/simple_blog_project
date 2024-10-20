@@ -75,13 +75,13 @@
 
 @section('frontend_contains')
 <div class="grid-container blog_details" style="margin-top: 80px; overflow-x: hidden;">
-    <div class="row" id="blog">
+    <div class="row px-3" id="blog">
 
 
         <div class="col-xl-9 blog_detail_fin">
             {{-- <button class="copy-ql-code-button" data-clipboard-target=".ql-code-block-container">Copy Code</button>
             --}}
-            <div>
+            <div >
                 <div class="card-body">
                     <h1 style="line-height: 35px;">{{ $blog->blog_title }}</h1>
                     <span>By <b>{{ $blog->user->name }}</b> on {{ $blog->created_at->format('d M, Y') }} in <b
