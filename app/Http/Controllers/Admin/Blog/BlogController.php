@@ -148,8 +148,10 @@ class BlogController extends Controller
      */
     public function blogSearch(Request $request){
         $blogs = Blog::latest()->with('user')->simplePaginate(10);
-        $search = Blog::where('about_blog', 'like', '%'.$request->about_blog.'%')
-             ->get();
+        $search = Blog::where('about_blog', 'like', '%'.$request->search_blog.'%')
+           ->orWhere('blog_title', 'like', '%'.$request->search_blog.'%')
+             ->paginate(10);
+        // dd($search);
         return view('Backend.Layout.Blogs.SearchBlog', compact('search','blogs'));
     }
 }

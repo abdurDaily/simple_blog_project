@@ -21,7 +21,7 @@
                 <thead>
                     <tr>
                     <th>
-                        <h6>SN.</h6>
+                        <h6>SN.a</h6>
                     </th>
                     <th>
                         <h6>Feature Image</h6>
@@ -72,13 +72,12 @@
                         </td>
 
 
-
-                  
-
-
                         <td class="min-width">
                             <a style="color: {{ $blog->active_status == 1 ? '#365CF5' : 'red'}}" href="{{ route('blog.active', $blog->id) }}" class="status-btn active-btn">{{ $blog->active_status == 1 ? 'Active' : 'Painding'  }}</a>
                         </td>
+
+
+
                         <td >
 
                         <div class="action" >
