@@ -62,6 +62,7 @@
 
         #about_me .img{
             display: flex;
+            height: 100%    ;
             justify-content: center;
         }
         #about_me .img img{

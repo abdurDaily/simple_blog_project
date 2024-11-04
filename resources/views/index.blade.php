@@ -38,7 +38,8 @@
                     <h1 class="title ularge fw-medium">
                         Hi, I&#8217;m <span class="highlight"> {{ $userProfile->name }} </span> 👋
                     </h1>
-                    {!! $userProfile->about_author !!}
+
+                    {!! Str::limit($userProfile->about_author, 300, '..... <a href="' . route('about.index') . '" class="your-class">read more</a>') !!}
                 </div>
                 <form class="subscribe-form" action="#" method="POST" target="_blank">
                     {{-- <label class="title small" for="email-epcl-subscribe-form-2"

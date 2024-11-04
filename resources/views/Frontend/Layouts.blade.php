@@ -3,6 +3,14 @@
   <head>
 
     <style>
+      .about_details ol{
+        list-style-type:square;
+        padding-left: 20px;
+      }
+      .about_details ul{
+        list-style-type:circle;
+        padding-left: 20px;
+      }
 
       @media (max-width: 576px) { 
         .open-menu span{
