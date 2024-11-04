@@ -53,7 +53,7 @@
         #about_me .header{
             background: #6a4ee9;
             text-align: center;
-            padding: 50px 0;
+            padding: 50px 0 20px 0;
             color: #fff;
         }
         #about_me .header h3{
