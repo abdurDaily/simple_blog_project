@@ -3,7 +3,7 @@
 @push('frontend_css')
     <style>
       
-        #about_parent {
+        /* #about_parent {
             margin-top: 110px;
             padding: 0 30px;
         }
@@ -46,22 +46,55 @@
             100% {
                 border-radius: 42% 58% 60% 40% / 54% 47% 53% 46%;
             }
+        } */
+
+
+
+        #about_me .header{
+            background: #6a4ee9;
+            text-align: center;
+            padding: 50px 0;
+            color: #fff;
+        }
+        #about_me .header h3{
+            font-size: 2rem;
+        }
+
+        #about_me .img{
+            display: flex;
+            justify-content: center;
+        }
+        #about_me .img img{
+            width: 70%;
+        }
+        #about_me .about_details ul {
+            list-style-type: disc;
+        }
+
+        @media (max-width: 991.98px) { 
+            #about_me .about_details{
+                padding: 20px 30px;
+            }
         }
 
     </style>
 @endpush
 
-    <div class="container" id="about_parent">
-        <div class="about-box">
-            <h1>about me</h1>
+
+
+    <section class="pt-5" id="about_me">
+        <div class="header pt-5">
+            <h3>About Me</h3>
         </div>
+        
 
-
-        <div class="row mt-5 justify-content-between">
-            <div class="col-xl-5">
-                <img class="img-fluid blob" src="{{ $about_user->image }}" alt="">
+      <div class="container">
+        <div class="row pt-5">
+            <div class="col-lg-5 img">
+                <img class="img-fluid" src="{{ $about_user->image }}" alt="">
             </div>
-            <div class="col-xl-6">
+
+            <div class="col-lg-7 about_details">
                 <h2 style="text-transform:capitalize;">{{ Str::limit($about_user->name, 30, '...') }}</h2>
                 <span>{{ $about_user->designation }}</span>
                 <p style="padding-top:20px;">{!! $about_user->about_author !!}</p>
@@ -79,5 +112,9 @@
                 {{-- <a style="display: inline-block; padding: 10px 30px; background:#EBCD0E; margin-top:20px;" href="">Download Cv</a> --}}
             </div>
         </div>
-    </div>
+      </div>
+    </section>
+
+
+
 @endsection

@@ -149,36 +149,37 @@
                             </h3>
                             <div class="clear"></div>
 
-                            @forelse ($categorys as $key => $category)
-                                <div class="item item-1 cat-21 ">
-                                    <h4 class="toggle-title underline-effect">
-                                        <span class="epcl-number ctag ctag-21">{{ ++$key }}</span>
-                                        <a href="{{ route('blog.all', $category->id) }}" class="title small"
-                                            data-id="ctag-21">{{ $category->category_name }}</a>
-                                    </h4>
-                                    <span class="toggle-icon"><svg class="icon small" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 24 24">
-                                            <path
-                                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-                                                fill="currentColor"></path>
-                                        </svg></span>
-                                    <ul class="post-list" style="display:none">
-                                        @forelse ($category->blogs->take(5) as $data=> $list)
-                                            <li>
-                                                <span class="fw-semibold">{{ ++$data }} .</span>
-                                                <a href="{{ route('blog.details', $list->id) }}"
-                                                    data-id="15">{{ Str::limit($list->blog_title, 20, '...') }}</a>
-                                            </li>
-                                        @empty
-                                            <h4>Data not found!</h4>
-                                        @endforelse
-                                    </ul>
-                                </div>
+                            
+                                    @forelse ($categorys as $key => $category)
+                                        <div class="item item-1 cat-21 ">
+                                            <h4 class="toggle-title underline-effect">
+                                                <span class="epcl-number ctag ctag-21">{{ ++$key }}</span>
+                                                <a href="{{ route('blog.all', $category->id) }}" class="title small"
+                                                    data-id="ctag-21">{{ $category->category_name }}</a>
+                                            </h4>
+                                            <span class="toggle-icon"><svg class="icon small" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                                        fill="currentColor"></path>
+                                                </svg></span>
+                                            <ul class="post-list" style="display:none">
+                                                @forelse ($category->blogs->take(5) as $data=> $list)
+                                                    <li>
+                                                        <span class="fw-semibold">{{ ++$data }} .</span>
+                                                        <a href="{{ route('blog.details', $list->id) }}"
+                                                            data-id="15">{{ Str::limit($list->blog_title, 20, '...') }}</a>
+                                                    </li>
+                                                @empty
+                                                    <h4>Data not found!</h4>
+                                                @endforelse
+                                            </ul>
+                                        </div>
 
-                            @empty
-                                <h4>No data found!</h4>
-                            @endforelse
-
+                                    @empty
+                                        <h4>No data found!</h4>
+                                    @endforelse
+                          
                             <div class="clear"></div>
 
 
@@ -194,29 +195,28 @@
 
                 <div class="center left-content grid-70">
                     <div class="articles classic">
-
-                        @forelse ($blogs as $blog)
-                            <article
-                             
-                                class="px-2 py-2 border-0 shadow-sm default classic-large bg-box epcl-flex index-2 post-style-small-image odd primary-cat-23 post-9 post type-post status-publish format-standard has-post-thumbnail hentry category-code category-2-html category-4-javascript">
-                                
-                                <div class="col-xl-12 p-0">
-                                    <div class=" rounded all_blog mb-4">
-                                        <div>
-                                            <img class="me-3" style="object-fit: cover;float: left; height:100px; width:100px; " src="{{ $blog->feature_image }}" alt="">
-                                            <h4 style="color:#555555 ;line-height: 30px;font-weight:bold;">{{ Str::limit($blog->blog_title, 100, '.....') }}</h4>
-                                            <b style="margin-bottom:10px; display:inline-block;">{{ $blog->created_at->format('M d, Y') }}</b> <br>
-                                            <span style="color: #555555;">{{ Str::limit($blog->about_blog, 200, '.....') }}</span> <br>
-                                            <a href="{{ route('blog.details',$blog->id) }}" class="see_btn">Continue Reading</a>
+                
+                        @forelse ($categorys as $category)
+                            @foreach ($category->blogs as $blog)
+                                <article class="px-2 py-2 border-0 shadow-sm default classic-large bg-box epcl-flex index-2 post-style-small-image odd primary-cat-23 post-9 post type-post status-publish format-standard has-post-thumbnail hentry category-code category-2-html category-4-javascript">
+                                    
+                                    <div class="col-xl-12 p-0">
+                                        <div class="rounded all_blog mb-4">
+                                            <div>
+                                                <img class="me-3" style="object-fit: cover;float: left; height:100px; width:100px;" src="{{ $blog->feature_image }}" alt="">
+                                                <h4 style="color:#555555; line-height: 30px; font-weight:bold;">{{ Str::limit($blog->blog_title, 100, '.....') }}</h4>
+                                                <b style="margin-bottom:10px; display:inline-block;">{{ $blog->created_at->format('M d, Y') }}</b> <br>
+                                                <span style="color: #555555;">{{ Str::limit($blog->about_blog, 200, '.....') }}</span> <br>
+                                                <a href="{{ route('blog.details', $blog->id) }}" class="see_btn">Continue Reading</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </article>
-
+                                </article>
+                            @endforeach
                         @empty
                             <p>No data found..!</p>
                         @endforelse
-
+                
                     </div>
                     <div class="separator last hide-on-tablet hide-on-mobile"></div>
                     <div class="clear"></div>
@@ -224,8 +224,9 @@
                         <div class="nav">
                             <span class="page-number">
                                 {{-- {{ $blogs->currentPage() }} of {{ $blogs->lastPage() }} </span> --}}
-                            {{-- {{ $blogs->links() }} --}}
-                            <a href="{{ route('blog.all.list') }}" class="epcl-button" data-title="Next">See All</a>
+                                {{-- {{ $blogs->links() }} --}}
+                                <a href="{{ route('blog.all.list') }}" class="epcl-button" data-title="Next">See All</a>
+                            </span>
                         </div>
                     </div>
                 </div>

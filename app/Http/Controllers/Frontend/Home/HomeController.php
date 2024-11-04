@@ -14,19 +14,12 @@ class HomeController extends Controller
      * HOME INDEX 
     */
    public function index(){
-    $blogs = Blog::with('category', 'user')
-        ->where('active_status', 1)
-        ->latest()
-        ->paginate(5);
-
-    // $categoryCounts = $blogs->groupBy('category_id')->map->count();
-
-    $categorys = Category::where('category_status', 1)
+    $categorys = Category::with('blogs')->where('category_status', 1)
        ->withCount('blogs')->latest()->get();
 
     $userProfile = User::where('author_active_status', 1)->first();
 
-    return view('index', compact('blogs', 'userProfile', 'categorys'));
+    return view('index', compact( 'userProfile', 'categorys'));
 }
     /** 
      * BLOG DETAILS
