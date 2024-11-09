@@ -2,6 +2,8 @@
 <html lang="en-US" prefix="og: http://ogp.me/ns#">
   <head>
 
+    @yield('OgTags')
+
     <style>
       .about_details ol{
         list-style-type:square;
@@ -40,7 +42,7 @@
     </style>
 
 
-      @yield('OgTags')
+      
 
 
       @stack('frontend_css')

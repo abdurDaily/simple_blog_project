@@ -1,6 +1,10 @@
 @extends('Frontend.Layouts')
 @section('frontend_contains')
 
+@section('OgTags')
+    
+@endsection
+
     @push('frontend_css')
         <style>
             @media (max-width: 767px) { 
@@ -79,9 +83,9 @@
                         <section class="epcl-popular-categories" id="epcl-popular-categories-3">
                             <div class="grid-container grid-medium np-mobile">
                                 <h2 class="title bordered medium textcenter"><svg class="icon large secondary-color">
-                                        <use
+                                        {{-- <use
                                             xlink:href="https://themes.estudiopatagon.com/wordpress/zento/wp-content/themes/zento/assets/images/svg-icons.svg#trending-icon">
-                                        </use>
+                                        </use> --}}
                                     </svg> Trending Topics</h2>
                                 <div class="epcl-flex bg-box section">
                                     <div class="left epcl-flex grid-60 np-mobile" >
@@ -143,9 +147,9 @@
                         <section id="epcl_topics_index-2" class="widget widget_epcl_topics_index">
                             <h3 class="widget-title title medium bordered">
                                 <svg class="decoration">
-                                    <use
+                                    {{-- <use
                                         xlink:href="https://themes.estudiopatagon.com/wordpress/zento/wp-content/themes/zento/assets/images/svg-icons.svg#title-decoration">
-                                    </use>
+                                    </use> --}}
                                 </svg>Topics Index
                             </h3>
                             <div class="clear"></div>

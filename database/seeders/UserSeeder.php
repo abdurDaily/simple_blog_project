@@ -28,6 +28,7 @@ class UserSeeder extends Seeder
             [
                 'name' => 'test',
                 'email' => 'test@gmail.com',
+                'author_active_status' => 1,
                 'password' => 'password',
                 'status' => 0,
             ],

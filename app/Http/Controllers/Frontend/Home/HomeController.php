@@ -14,8 +14,12 @@ class HomeController extends Controller
      * HOME INDEX 
     */
    public function index(){
-    $categorys = Category::with('blogs')->where('category_status', 1)
+    $categorys = Category::with(['blogs'=>function($q){
+      return $q->where('active_status', 1);
+    }])->where('category_status', 1)
        ->withCount('blogs')->latest()->get();
+
+       
 
     $userProfile = User::where('author_active_status', 1)->first();
 

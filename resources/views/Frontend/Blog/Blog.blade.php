@@ -2,13 +2,18 @@
 
 
 @section('OgTags')
-<meta property="og:title" content="{{ $blog->blog_title }}" />
-<meta property="og:description" content="{{ Str::limit($blog->blog_details, 155) }}" />
-<meta property="og:image" content="{{ asset('images/' . $blog->blog_image) }}" />
-<img style="height:400px; object-fit: scale-down;" class="img-fluid " src="{{ asset('images/' . $blog->blog_image) }}"
-    alt="">
-<meta property="og:url" content="{{ url($blog->id) }}" />
+
+    <meta property="og:title" content="{{ $blog->blog_title }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:image" content="{{ $blog->feature_image }}" />
+    <meta property="og:description" content="{{ Str::limit($blog->blog_details, 155) }}" />
+    <meta property="og:site_name" content="dataviz" />
+
 @endsection
+
+
+
 
 @push('frontend_css')
 <link href="https://fonts.cdnfonts.com/css/helvetica-neue-55" rel="stylesheet">
@@ -241,35 +246,40 @@
 @endsection
 
 @push('frontend_js')
-<script src="https://code.iconify.design/iconify.min.js"></script>
 
 <script>
-    // Get the CodeMirror element
-        var codeMirror = document.querySelector('.codemirror');
+    <script src="https://code.iconify.design/iconify.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
 
-        // Get the Code Snippet textarea
-        var codeSnippet = document.querySelector('#code_snippet');
-
-        // Create a flag to track whether the code has already been appended
-        var codeAppended = false;
-
-        // Add an event listener to the Code Snippet textarea
-        codeSnippet.addEventListener('input', function() {
-            // Get the code from the Code Snippet textarea
-            var code = codeSnippet.value;
-
-            // Check if the code has already been appended
-            if (!codeAppended) {
-                // If not, append the code to the CodeMirror element
-                codeMirror.innerHTML = '<code class="language-php">' + code + '</code>';
-                codeAppended = true;
+<script>
+    // Function to handle copying to clipboard
+    function copyToClipboard(text) {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).then(() => {
+                console.log('Copied to clipboard');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        } else {
+            // Fallback method
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                console.log('Fallback: Copied to clipboard');
+            } catch (err) {
+                console.error('Fallback: Failed to copy: ', err);
             }
-        });
-</script>
+            document.body.removeChild(textarea);
+        }
+    }
 
-
-<script>
-    const facebookIcon = document.querySelector('.facebook-icon');
+    // Event listeners for social sharing
+    document.addEventListener('DOMContentLoaded', function() {
+        const facebookIcon = document.querySelector('.facebook-icon');
         const twitterIcon = document.querySelector('.twitter-icon');
 
         facebookIcon.addEventListener('click', () => {
@@ -279,42 +289,38 @@
         twitterIcon.addEventListener('click', () => {
             window.open(`https://twitter.com/intent/tweet?url=${window.location.href}`, '_blank');
         });
-</script>
 
+        // Code block copy functionality
+        const qlCodeContainers = document.querySelectorAll('.ql-code-block-container');
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-php.min.js"></script>
+        qlCodeContainers.forEach((container) => {
+            const codeTextContainer = document.createElement('div');
+            codeTextContainer.classList.add('code-text-container');
+            codeTextContainer.innerHTML = container.innerHTML;
+            container.innerHTML = '';
+            container.appendChild(codeTextContainer);
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-            const qlCodeContainers = document.querySelectorAll('.ql-code-block-container');
+            const copyButton = document.createElement('button');
+            copyButton.classList.add('copy-ql-code-button');
+            copyButton.textContent = 'Copy Code';
+            container.appendChild(copyButton);
 
-            qlCodeContainers.forEach((container) => {
-                const codeTextContainer = document.createElement('div');
-                codeTextContainer.classList.add('code-text-container');
-                codeTextContainer.innerHTML = container.innerHTML;
-                container.innerHTML = '';
-                container.appendChild(codeTextContainer);
-
-                const copyButton = document.createElement('button');
-                copyButton.classList.add('copy-ql-code-button');
-                copyButton.textContent = 'Copy Code';
-                container.appendChild(copyButton);
-
-                copyButton.addEventListener('click', () => {
-                    const codeText = codeTextContainer.innerText.replace(
-                        'PlainBashC++C#CSSDiffHTML/XMLJavaJavaScriptMarkdownPHPPythonRubySQL',
-                        '');
-                    navigator.clipboard.writeText(codeText.trim()).then(() => {
-                        copyButton.textContent = 'Copied!';
-                        setTimeout(() => {
-                            copyButton.textContent = 'Copy Code';
-                        }, 2000);
-                    });
-                });
+            copyButton.addEventListener('click', () => {
+                const codeText = codeTextContainer.innerText.trim();
+                copyToClipboard(codeText); // Use the copy function
+                copyButton.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyButton.textContent = 'Copy Code';
+                }, 2000);
             });
         });
+    });
 </script>
+</script>
+
+
+
+
 @endpush
 
 @push('frontend_css')
