@@ -77,8 +77,8 @@
 
         </style>
     @endpush
-    <div class="grid-container paginate_style" style="margin-top: 120px;">
-        <div class="row g-3">
+    <div class="grid-container paginate_style" style="margin-top: 120px; padding: 0 20px !important;">
+        <div class="row g-3 px-1">
             <div class="col-xl-9">
                 @forelse ($allBlogList as $blog)
                     <div class="col-xl-12" >

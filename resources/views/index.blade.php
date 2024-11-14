@@ -147,9 +147,6 @@
                         <section id="epcl_topics_index-2" class="widget widget_epcl_topics_index">
                             <h3 class="widget-title title medium bordered">
                                 <svg class="decoration">
-                                    {{-- <use
-                                        xlink:href="https://themes.estudiopatagon.com/wordpress/zento/wp-content/themes/zento/assets/images/svg-icons.svg#title-decoration">
-                                    </use> --}}
                                 </svg>Topics Index
                             </h3>
                             <div class="clear"></div>

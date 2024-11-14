@@ -13,18 +13,31 @@ class HomeController extends Controller
     /**
      * HOME INDEX 
     */
-   public function index(){
-    $categorys = Category::with(['blogs'=>function($q){
-      return $q->where('active_status', 1);
-    }])->where('category_status', 1)
-       ->withCount('blogs')->latest()->get();
+    public function index(){
+      $categorys = Category::with(['blogs' => function($q){
+          return $q->where('active_status', 1)->latest(); // Get only active blogs and order them by latest
+      }])->where('category_status', 1)
+        ->withCount('blogs')
+        ->latest()
+        ->get();
+  
+      // Get the user profile
+      $userProfile = User::where('author_active_status', 1)->first();
+  
+      // Prepare an array to hold latest blogs
+      $latestBlogs = [];
+  
+      // Loop through categories to get the latest blog for each category
+      foreach ($categorys as $category) {
+          if ($category->blogs->isNotEmpty()) {
+              $latestBlogs[$category->id] = $category->blogs->first(); // Get the latest blog from the active blogs
+          } else {
+              $latestBlogs[$category->id] = null; // No blogs available for this category
+          }
+      }
 
-       
-
-    $userProfile = User::where('author_active_status', 1)->first();
-
-    return view('index', compact( 'userProfile', 'categorys'));
-}
+      return view('index', compact('userProfile', 'categorys', 'latestBlogs'));
+  }
     /** 
      * BLOG DETAILS
      */
